@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - Curious Souls Café</title>
+    <meta name="description" content="Find answers to common questions about Curious Souls Café events, our philosophy, community, discussion format, and our tools for fostering meaningful conversations.">
+    <link rel="icon" type="image/x-icon" href="https://app.curioussouls.cafe/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6b46c1;
+            --secondary-color: #a855f7;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        /* --- Header & Hero --- */
+        .main-header {
+            background-color: var(--bg-white);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-dark); }
+        .logo img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-color); }
+        .logo span { font-size: 1.25rem; font-weight: 700; }
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 1.5rem;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover { color: var(--primary-color); }
+        .hamburger-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hero {
+            background: linear-gradient(to right, #f3f4f6 0%, #ede9fe 20%, #ede9fe 80%, #f3f4f6 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* --- Sections & FAQ --- */
+        #faq-list {
+            padding: 2rem 1.5rem 3rem; /* ADDED: To provide horizontal spacing on all screens */
+        }
+        .faq-section { 
+            padding-top: 3rem;
+        }
+        .faq-section:first-of-type {
+            padding-top: 0;
+        }
+        .faq-category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .faq-category-header i {
+            color: var(--primary-color);
+        }
+        .faq-container { max-width: 850px; margin: 0 auto; }
+        .faq-item {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 1.25rem 1.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dark);
+        }
+        .faq-question:hover { color: var(--primary-color); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding: 0 1.5rem;
+            color: var(--text-light);
+        }
+        .faq-answer p, .faq-answer ul { margin-top: 0; margin-bottom: 1rem; }
+        .faq-answer a { color: var(--primary-color); text-decoration: none; font-weight: 600; }
+        .faq-answer a:hover { text-decoration: underline; }
+        .faq-answer ul { list-style: none; padding-left: 0; }
+        .faq-answer li { position: relative; padding-left: 20px; margin-bottom: 0.5rem; }
+        .faq-answer li::before {
+            content: '\f105'; /* fa-chevron-right */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 1500px; 
+            padding: 0 1.5rem 1.25rem;
+        }
+        .faq-question .icon { transition: transform 0.3s; }
+        .faq-item.active .faq-question .icon { transform: rotate(180deg); }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--text-dark);
+            color: #d1d5db;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .main-footer a { color: #d1d5db; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .faq-category-header { font-size: 1.5rem; }
+            
+            /* IMPROVEMENT: Added mobile navigation media query */
+            .hamburger-menu { display: block; }
+            .main-nav {
+                position: fixed; top: 0; right: 0; width: 280px; height: 100%;
+                background-color: var(--bg-white); z-index: 1000; display: flex;
+                flex-direction: column; padding: 5rem 0 2rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .main-nav.is-open { transform: translateX(0); }
+            .main-nav a {
+                margin: 0; padding: 1rem 2rem; font-size: 1.1rem;
+                color: var(--text-dark); border-bottom: 1px solid var(--border-color);
+            }
+            .main-nav a:hover {
+                background-color: var(--bg-light); color: var(--primary-color);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../" class="logo"> <img src="https://app.curioussouls.cafe/images/csc_logo.jpg" alt="Curious Souls Cafe Logo">
+                <span>Curious Souls Café</span>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="./introduction.html">About</a>
+                <a href="./events.html">Events</a>
+                <a href="./web-app.html">Tools</a>
+                <a href="./workplace.html">For the Workplace</a>
+                <a href="./faq.html">FAQ</a>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="Open navigation menu" aria-controls="main-nav" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Frequently Asked Questions</h1>
+                <p>This guide answers common questions about our unique gathering spaces that bring people together for meaningful conversations. Whether you're curious about attending your first event, wondering how our discussions work, or interested in facilitating events, you'll find essential information below about our community-driven initiative.</p>
+            </div>
+        </section>
+
+        <section id="faq-list"> <div class="faq-container">
+
+                <div class="faq-section">
+                    <h2 class="faq-category-header"><i class="fas fa-coffee"></i>The Basics</h2>
+                    <div class="faq-item">
+                        <button class="faq-question">1. What is the Curious Souls Café? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>Curious Souls Café is a third place (a social environment, separate from home and the workplace) where people gather to engage in thoughtful conversations centered around meaningful questions. It's designed to foster a sense of community, encourage self-reflection, and explore different perspectives on life.</p>
+                            <ul>
+                                <li><strong>Safe and Non-Judgmental Environment:</strong> It is designed as a safe space where participants feel comfortable sharing their thoughts and vulnerabilities without fear of judgment.</li>
+                                <li><strong>Beyond Small Talk:</strong> The café focuses on meaningful, deep, and introspective conversations that go beyond superficial topics.</li>
+                                <li><strong>Casual Philosophy and Psychology:</strong> It aims to be non-academic and casual, making it accessible to everyone.</li>
+                                <li><strong>Fostering Connection:</strong> The event serves as a platform for strangers to connect on a deeper level and form bonds.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">2. What is the philosophy behind Curious Souls Café? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>Curious Souls Café was founded to bridge the gap often created by online communication and personalized feeds, which can lead to social bubbles and isolation. We aim to break these barriers by facilitating face-to-face conversations.</p>
+                            <p>We believe in the power of in-person interaction to foster deeper bonds and understanding that online exchanges cannot provide. Our core mission is centered on the invaluable experience of human connection in real life.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">3. How does it compare to other meetup groups? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>Curious Souls Café differentiates itself by its focus on fostering meaningful bonds (curious ‘souls’) rather than academic or debate-style discussions. While other groups might involve small talk or specific activities, Curious Souls Café centers on structured, deep conversations on personal and universal themes.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">4. Is the Curious Souls Café free to attend? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>Yes. Our public events are free and run as a non-profit, community-driven initiative. We don’t charge admission or membership fees. You’re responsible only for your own food and drinks at the venue. Beware of anyone requesting payments on our behalf; when in doubt, email <a href="mailto:hello@curioussouls.cafe">hello@curioussouls.cafe</a> to verify.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h2 class="faq-category-header"><i class="fas fa-comments"></i>The Event Experience</h2>
+                    <div class="faq-item">
+                        <button class="faq-question">5. How are the discussions structured? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>Generally, a session is structured into two rounds to balance structure and spontaneity.</p>
+                             <ul>
+                                <li><strong>First Round:</strong> Participants use question cards curated by our facilitator to explore a topic.</li>
+                                <li><strong>Second Round:</strong> This optional round invites participants to write and discuss their own questions, focusing on the most engaging topics voted on by the group.</li>
+                                <li><strong>Moment of Truth</strong>: The final 5-10 minutes are for sharing key takeaways and feedback.</li>
+                            </ul>
+                            <p>The structure of our events is further detailed <a href="https://curioussoulscafe.substack.com/i/154389021/event-structure" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">6. How do you balance formality and spontaneity? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>While we use a base structure with rounds of questions, we intentionally avoid rigid adherence. There's a strong emphasis on adapting to the group's vibe, with flexibility to skip rounds or introduce fun elements like the "punishment" <a href="https://app.curioussouls.cafe/pages/dice.html" target="_blank" rel="noopener noreferrer">dice</a>. This creates a comfortable atmosphere where participants feel free to engage authentically.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">7. Who typically attends these events? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>Since the event is conducted in English in Asia to appeal to a global audience, attendees are often diverse individuals. The participants usually include a mix of locals, expatriates, and people from various professional and cultural backgrounds who share an interest in meaningful conversations.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">8. How does the event cater to both introverts and extroverts? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>The format is designed to accommodate both introverts and extroverts. For introverts, the turn-taking format offers a clear framework, easing the pressure of spontaneous conversation. Extroverts benefit from the opportunity to openly share and engage. The focus on genuine sharing ensures a meaningful experience for everyone.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <button class="faq-question">9. What role does the facilitator play? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>The facilitator guides the discussion, sets the tone, introduces questions, manages time, and encourages participation from all members. They ensure everyone gets a chance to speak and are mindful of sensitive topics, steering the conversation if necessary to maintain a safe and harmonious group dynamic.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h2 class="faq-category-header"><i class="fas fa-globe-asia"></i>Community & Tools</h2>
+                    <div class="faq-item">
+                        <button class="faq-question">10. What platforms and tools are used? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>We use a variety of platforms to organize events and engage our community:</p>
+                            <ul>
+                                <li><strong>Meetup</strong>: Our primary platform for organizing events. A list of our groups is <a href="https://curioussoulscafe.substack.com/p/event-structure" target="_blank" rel="noopener noreferrer">here</a>.</li>
+                                <li><strong>Zoom Events</strong>: Hosted to help global community members reconnect.</li>
+                                <li><strong>Dedicated Web App</strong>: Our <a href="https://app.curioussouls.cafe/" target="_blank" rel="noopener noreferrer">web app</a> offers virtual question cards to facilitate discussions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">11. When and where does it take place? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>The initiative began in Hong Kong in July 2024. Our events are currently held weekly in <a href="https://meetup.com/curious-souls-cafe" target="_blank" rel="noopener noreferrer">Hong Kong</a>, <a href="https://www.meetup.com/curious-souls-cafe-singapore/" target="_blank" rel="noopener noreferrer">Singapore</a>, and <a href="https://www.meetup.com/curious-souls-cafe-seoul/" target="_blank" rel="noopener noreferrer">Seoul</a>. Other locations with past events include <a href="https://www.meetup.com/curious-souls-cafe-osaka/" target="_blank" rel="noopener noreferrer">Osaka</a>, <a href="https://www.meetup.com/curious-souls-cafe-taipei/" target="_blank" rel="noopener noreferrer">Taipei</a>, and <a href="https://www.meetup.com/curious-souls-cafe-kuala-lumpur/" target="_blank" rel="noopener noreferrer">Kuala Lumpur</a>. As of September 2025, there have been about 100 sessions globally.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <button class="faq-question">12. What is the "global citizen" mindset? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>The "global citizenship" mindset is a core tenet of our community, fostering an environment where individuals transcend national and cultural boundaries. The events use English to attract a wide, international audience, and discussions often touch on universal human experiences, offering a sense of belonging for those who may not feel fully at home in a single country.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">13. What is the Curious Souls Café web app? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                             <p>Our custom-designed <a href="https://app.curioussouls.cafe/" target="_blank" rel="noopener noreferrer">web app</a> is a companion tool used during events to spark conversations. Participants can scan a QR code to access virtual question decks on various topics. Features include generating random questions, saving favorites, and using a <a href="https://app.curioussouls.cafe/pages/dice.html" target="_blank" rel="noopener noreferrer">dice roll</a> to add a playful twist to discussions. You can explore the app <a href="https://app.curioussouls.cafe/" target="_blank" rel="noopener noreferrer">here</a>.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">14. What is the significance of personalized touches? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>Personalized touches are highly valued. The <a href="https://app.curioussouls.cafe/pages/global-curiosities.html" target="_blank" rel="noopener noreferrer">practice</a> of incorporating questions written by previous attendees makes events feel more unique and reflects the collective insights of the community. This commitment to personalization and evolution aims to keep the experience fresh, relevant, and deeply resonant for participants.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h2 class="faq-category-header"><i class="fas fa-star"></i>Other Initiatives & Contact</h2>
+                    <div class="faq-item">
+                        <button class="faq-question">15. What is the Curious Souls Café for the Workplace initiative? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p><a href="workplace.html">Curious Souls Café for the Workplace</a> adapts our public events into facilitated sessions for business teams. The goal is to build authentic connection, empathy, and psychological safety.</p>
+                            <ul>
+                                <li><strong>Structured, meaningful conversations</strong>: Sessions use question prompts to guide non‑judgmental sharing and active listening.</li>
+                                <li><strong>Customizable to your goals</strong>: We tailor themes and branding to your company.</li>
+                                <li><strong>Works in-person or virtually</strong>: Formats are effective for on-site or remote teams.</li>
+                                <li><strong>Note on pricing</strong>: While our public café is a free initiative, workplace engagements are a paid, professional service.</li>
+                            </ul>
+                             <p>Interested in bringing this to your team? Read more about it <a href="/#workplace">here</a>.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">16. Got other questions or feedback for us? <i class="fas fa-chevron-down icon"></i></button>
+                        <div class="faq-answer">
+                            <p>To share your feedback with us, please fill in our <a href="https://curioussoulscafe.github.io/links/share-feedback" target="_blank" rel="noopener noreferrer">feedback form</a>.</p>
+                            <p>You are also welcome to email us directly at <a href="mailto:hello@curioussouls.cafe">hello@curioussouls.cafe</a> if you have any additional questions.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+             <p><a href="/">Back to Home</a></p>
+            <p>&copy; 2025 Curious Souls Café. All Rights Reserved.</p>
+            <p><a href="mailto:hello@curioussouls.cafe">hello@curioussouls.cafe</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Optional: Close other open items
+                    // const currentlyActive = document.querySelector('.faq-item.active');
+                    // if (currentlyActive && currentlyActive !== item) {
+                    //     currentlyActive.classList.remove('active');
+                    // }
+                    item.classList.toggle('active');
+                });
+            });
+
+            // --- Mobile Navigation Toggle ---
+            const nav = document.getElementById('main-nav');
+            const hamburgerBtn = document.getElementById('hamburger-menu');
+            if (hamburgerBtn && nav) {
+                hamburgerBtn.addEventListener('click', () => {
+                    const isOpen = nav.classList.toggle('is-open');
+                    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                    const icon = hamburgerBtn.querySelector('i');
+                    if (isOpen) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

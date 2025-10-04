@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join Curious Souls Café, a global community for meaningful conversations that go beyond small talk. Explore life's big questions, foster genuine connections, and find events in Hong Kong, Singapore, Seoul, and more.">
+    <title>Curious Souls Café - A Space for Meaningful Conversations</title>
+    <link rel="icon" type="image/x-icon" href="https://app.curioussouls.cafe/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6b46c1;
+            --secondary-color: #a855f7;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            scroll-behavior: smooth; /* base smooth scroll */
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        /* --- Header & Hero --- */
+        .main-header {
+            background-color: var(--bg-white);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-dark); }
+        .logo img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-color); }
+        .logo span { font-size: 1.25rem; font-weight: 700; }
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 1.5rem;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover { color: var(--primary-color); }
+        
+        /* IMPROVEMENT: Hamburger Menu Button */
+        .hamburger-menu {
+            display: none; /* Hidden on desktop */
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001; /* Above mobile nav */
+        }
+
+        .hero {
+            background: linear-gradient(to right, #f3f4f6 0%, #ede9fe 20%, #ede9fe 80%, #f3f4f6 100%);
+            padding: 5rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 650px;
+            margin: 0 auto 2rem auto;
+        }
+        .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid transparent;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+        }
+        .btn-primary:hover { background-color: #5b21b6; transform: translateY(-2px); }
+        .btn-secondary {
+            background-color: var(--bg-white);
+            color: var(--primary-color);
+            border-color: var(--border-color);
+        }
+        .btn-secondary:hover { background-color: var(--bg-light); transform: translateY(-2px); }
+
+        /* --- Sections --- */
+        section { 
+            padding: 4rem 0; 
+            scroll-margin-top: 90px;
+        }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.25rem; margin-bottom: 0.5rem; }
+        .section-header p { color: var(--text-light); font-size: 1.125rem; max-width: 700px; margin: auto; }
+        #about { background-color: var(--bg-white); }
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .feature-card {
+            padding: 2rem;
+            background-color: var(--bg-light);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+        .feature-card .icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .feature-card h3 { margin-top: 0; font-size: 1.25rem; }
+        .feature-card p { color: var(--text-light); }
+        .about-actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        /* --- How It Works --- */
+        .timeline {
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+            z-index: 0;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--secondary-color);
+            opacity: 0.22;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid var(--secondary-color);
+            top: 22px;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .timeline-item.left { left: 0; padding-right: 46px; }
+        .timeline-item.right { left: 50%; padding-left: 46px; }
+        .timeline-item.left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 28px;
+            width: 0;
+            z-index: 2;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        .timeline-item.right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 28px;
+            width: 0;
+            z-index: 2;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        .timeline-item.right::after { left: -10px; }
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: white;
+            position: relative;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .timeline-content h3 { margin-top: 0; color: var(--primary-color); }
+        
+        /* --- Community --- */
+        #community { background: var(--bg-white); }
+        .community-content { text-align: center; }
+        .community-content .locations {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .location-pill {
+            background: var(--bg-light);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .location-pill:hover {
+            color: var(--primary-color);
+            background: #f3f4f6;
+        }
+
+        /* --- Tools Section --- */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        .tool-card {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+        .tool-card .icon { font-size: 3rem; color: var(--secondary-color); margin-bottom: 1.5rem; }
+        .tool-card h3 { font-size: 1.75rem; }
+        .tool-card p { color: var(--text-light); margin-bottom: 2rem; }
+
+        /* --- Insights Section --- */
+        #insights { background-color: var(--bg-white); }
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .insight-card {
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: var(--bg-white);
+            transition: all 0.2s;
+        }
+        .insight-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.07); }
+        .insight-card a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+            height: 100%;
+        }
+        .insight-card-content { padding: 1.5rem; }
+        .insight-card-content span {
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 0.875rem;
+        }
+        .insight-card-content h3 { margin: 0.5rem 0; }
+        .insight-card-content blockquote {
+            margin: 1rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid var(--secondary-color);
+            color: var(--text-light);
+            font-style: italic;
+        }
+        .insights-actions {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        /* --- Workplace Section --- */
+        #workplace { background-color: var(--bg-light); }
+        .workplace-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .workplace-icon {
+            font-size: 8rem;
+            text-align: center;
+            color: var(--secondary-color);
+            opacity: 0.7;
+        }
+        .workplace-text h3 { font-size: 1.75rem; margin-top: 0; }
+        .workplace-text ul { list-style: none; padding: 0; }
+        .workplace-text li { position: relative; padding-left: 25px; margin-bottom: 0.5rem; }
+        .workplace-text li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+
+        /* --- FAQ Section --- */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-question:hover { color: var(--primary-color); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            padding: 0 1.5rem;
+        }
+        .faq-answer p { margin-top: 0; color: var(--text-light); }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 1.5rem 1rem;
+        }
+        .faq-question .icon { transition: transform 0.3s; }
+        .faq-item.active .faq-question .icon { transform: rotate(180deg); }
+        .faq-actions {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--text-dark);
+            color: #d1d5db;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .footer-socials { margin-bottom: 1.5rem; }
+        .footer-socials a {
+            color: #d1d5db;
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            transition: color 0.2s;
+        }
+        .footer-socials a:hover { color: var(--secondary-color); }
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+        }
+        .footer-links a:hover { text-decoration: underline; }
+        .footer-copyright { margin-top: 1.5rem; font-size: 0.875rem; }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.25rem; }
+            .hero p { font-size: 1.125rem; }
+            section { padding: 3rem 0; scroll-margin-top: 72px; }
+            .tools-grid, .workplace-content { grid-template-columns: 1fr; }
+            .workplace-icon { font-size: 6rem; margin-bottom: 2rem; }
+
+            /* Mobile timeline layout */
+            .timeline::after { left: 10px; transform: none; width: 3px; opacity: 0.3; }
+            .timeline-item { width: 100%; padding-left: 40px; padding-right: 0; }
+            .timeline-item.left, .timeline-item.right { left: 0%; }
+            .timeline-item.left::after, .timeline-item.right::after { left: 0; }
+            .timeline-item.left::before, .timeline-item.right::before {
+                left: 20px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+
+            /* IMPROVEMENT: Mobile Navigation Styling */
+            .hamburger-menu {
+                display: block; /* Show hamburger on mobile */
+            }
+
+            .main-nav {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100%;
+                background-color: var(--bg-white);
+                z-index: 1000;
+                display: flex;
+                flex-direction: column;
+                padding: 5rem 0 2rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .main-nav.is-open {
+                transform: translateX(0);
+            }
+            
+            .main-nav a {
+                margin: 0;
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                color: var(--text-dark);
+                border-bottom: 1px solid var(--border-color);
+            }
+            .main-nav a:hover {
+                background-color: var(--bg-light);
+                color: var(--primary-color);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="https://app.curioussouls.cafe/images/csc_logo.jpg" alt="Curious Souls Cafe Logo">
+                <span>Curious Souls Café</span>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="/pages/introduction.html">About</a>
+                <a href="/pages/events.html">Events</a>
+                <a href="/pages/web-app.html">Tools</a>
+                <a href="/pages/workplace.html">For the Workplace</a>
+                <a href="/pages/faq.html">FAQ</a>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="Open navigation menu" aria-controls="main-nav" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>A Space for Meaningful Conversations</h1>
+                <p>Welcome to Curious Souls Café, a "third place" away from home and work, designed to foster genuine connection, encourage self-reflection, and explore life’s big questions together.</p>
+                <div class="cta-buttons">
+                    <a href="#community" class="btn btn-primary"><i class="fas fa-calendar-check" style="margin-right: 0.2rem;"></i> Find an Event</a>
+                    <a href="#tools" class="btn btn-secondary"><i class="fas fa-tools" style="margin-right: 0.2rem;"></i> Our Tools</a>
+                    <a href="#workplace" class="btn btn-secondary"><i class="fas fa-building" style="margin-right: 0.2rem;"></i> For Your Team</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What is Curious Souls Café?</h2>
+                    <p>Founded to counter the social bubbles and isolation of modern life, we believe in the power of face-to-face conversations to cultivate deeper bonds, genuine friendships, and personal growth.</p>
+                </div>
+                <div class="about-content">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-comments"></i></div>
+                        <h3>Beyond Small Talk</h3>
+                        <p>We focus on deep, introspective conversations that go beyond superficial topics, creating an outlet to explore thoughts and feelings often avoided elsewhere.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-heart"></i></div>
+                        <h3>Safe & Non-Judgmental</h3>
+                        <p>Our events are safe spaces where you can share thoughts and vulnerabilities without fear of judgment, encouraging honesty and authenticity.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <h3>Fostering Connection</h3>
+                        <p>We provide a platform for strangers from diverse backgrounds to connect on a deeper level, bridging gaps that might not be crossed in daily life.</p>
+                    </div>
+                </div>
+                <div class="about-actions">
+                    <a href="./pages/introduction.html" class="btn btn-secondary" style="margin-right:0.65rem;">
+                        <i class="fas fa-info-circle" style="margin-right:0.35rem;"></i>
+                        Learn More
+                    </a>
+                    <a href="./pages/welcome-leaflet.html" class="btn btn-secondary" style="margin-right:0.65rem;">
+                        <i class="fas fa-book-open" style="margin-right:0.35rem;"></i>
+                        Welcome Leaflet
+                    </a>
+                    </div>
+            </div>
+        </section>
+
+        <section id="structure">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How Our Events Work</h2>
+                    <p>Our public events balance structure and spontaneity to create a comfortable and engaging atmosphere for everyone.</p>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Round One: Curated Questions</h3>
+                            <p>We begin with thoughtfully curated question cards to spark reflection and help participants build rapport.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>Round Two: Your Questions</h3>
+                            <p>An optional second round invites you to write and share your own questions, allowing for deeper, more organic conversations driven by the group.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>Moment of Truth</h3>
+                            <p>We conclude with a 5-10 minute reflection session where everyone can share key takeaways, insights, or lessons learned from the discussion.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div style="text-align: center; margin-top: 2rem;">
+                    <a href="./pages/event-structure.html" class="btn btn-secondary">View Detailed Event Structure</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="bg-white">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Global Community</h2>
+                    <p>Started in Hong Kong in July 2024, the Café has grown into a global community, hosting events across Asia and online to connect curious souls from all walks of life through various Meetup groups:</p>
+                </div>
+                <div class="community-content">
+                    <div class="locations">
+                        <a class="location-pill" href="https://www.meetup.com/curious-souls-cafe/" target="_blank" rel="noopener noreferrer">Hong Kong</a>
+                        <a class="location-pill" href="https://www.meetup.com/curious-souls-cafe-singapore/" target="_blank" rel="noopener noreferrer">Singapore</a>
+                        <a class="location-pill" href="https://www.meetup.com/curious-souls-cafe-seoul/" target="_blank" rel="noopener noreferrer">Seoul</a>
+                        <a class="location-pill" href="https://www.meetup.com/curious-souls-cafe-taipei/" target="_blank" rel="noopener noreferrer">Taipei</a>
+                        <a class="location-pill" href="https://www.meetup.com/curious-souls-cafe-kuala-lumpur/" target="_blank" rel="noopener noreferrer">Kuala Lumpur</a>
+                        <a class="location-pill" href="https://www.meetup.com/curious-souls-cafe-osaka/" target="_blank" rel="noopener noreferrer">Osaka</a>
+                        <a class="location-pill" href="https://www.meetup.com/curious-souls-cafe/" target="_blank" rel="noopener noreferrer">and beyond...</a>
+                    </div>
+                    <p>As of September 2025, we have hosted more than 100 sessions in Asia.</p>
+                    <a href="./pages/events.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View All Events</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Explore Our Conversation Tools</h2>
+                    <p>To enhance our discussions, we've developed a suite of <a href="https://github.com/curioussoulscafe/curious-souls-cafe" target="_blank" rel="noopener noreferrer">open-source</a> digital tools, available for everyone to use.</p>
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="icon"><i class="fas fa-clone"></i></div>
+                        <h3>Virtual Question Decks</h3>
+                        <p>Access dozens of question decks on topics like Happiness, Friendship, and Inner Child to spark conversations anytime, anywhere.</p>
+                        <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+                           <a href="https://app.curioussouls.cafe/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Launch the App</a>
+                           <a href="./pages/web-app.html" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                        </div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="icon"><i class="fas fa-dice"></i></div>
+                        <h3>The Virtual Dice Roller</h3>
+                        <p>Add a playful twist to your talks! Use our virtual dice to decide who starts, break a tie, or engage in meaningful "punishments" (action prompts).</p>
+                        <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+                           <a href="https://app.curioussouls.cafe/pages/dice.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Roll the Dice</a>
+                           <a href="./pages/roll-the-dice.html" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="insights" class="bg-white">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Insights From Our Gatherings</h2>
+                    <p>Curious about our conversations? Here's a glimpse into the profound and thought-provoking topics we explore together.</p>
+                </div>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/curious-souls-cafe-happiness-insights" target="_blank" rel="noopener noreferrer" aria-label="Read: Hong Kong - On Happiness & Limiting Beliefs">
+                            <div class="insight-card-content">
+                                <span>Hong Kong / July 2024</span>
+                                <h3>On Happiness & Limiting Beliefs</h3>
+                                <blockquote>Why is sorrow more unforgettable than happiness? Participants explored how to redefine happiness by shifting focus from what we lack to appreciating what we already have.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/on-crafting-a-legacy-conversations-with-curious-souls-in-singapore" target="_blank" rel="noopener noreferrer" aria-label="Read: Singapore - On Crafting a Legacy">
+                            <div class="insight-card-content">
+                                <span>Singapore / January 2025</span>
+                                <h3>On Crafting a Legacy</h3>
+                                <blockquote>If you could write your own obituary, what would it say? This led to a profound dialogue about mortality, values, and the impact of the small, meaningful moments that define a life well-lived.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/on-addiction-and-happiest-memories" target="_blank" rel="noopener noreferrer" aria-label="Read: Taipei - On Addiction & Simple Pleasures">
+                            <div class="insight-card-content">
+                                <span>Taipei / December 2024</span>
+                                <h3>On Addiction & Simple Pleasures</h3>
+                                <blockquote>What's your thought on addiction? The group discussed how many addictions stem from underlying issues and the importance of mindfulness in finding happiness in simple, everyday moments.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="insights-actions">
+                    <a href="https://curioussoulscafe.substack.com/archive" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right:0.35rem;"></i> Explore More on Our Blog</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="workplace">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Now for the Workplace</h2>
+                    <p>Meaningful Conversations, Stronger Teams. We adapt our unique format for businesses seeking to build authentic connection and psychological safety.</p>
+                </div>
+                <div class="workplace-content">
+                    <div class="workplace-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="workplace-text">
+                        <h3>Beyond Traditional Team Building</h3>
+                        <p>Move past surface-level activities. Our facilitated sessions create a safe, non-judgmental space where colleagues can become a community. This is a customizable team-building activity designed to fit your company's specific needs.</p>
+                        <ul>
+                            <li>Fosters authentic human connection and trust.</li>
+                            <li>Enhances psychological safety to boost creativity.</li>
+                            <li>Builds empathy and a more resilient team.</li>
+                        </ul>
+                        <a href="./pages/workplace.html" class="btn btn-primary" style="margin-top: 1rem;">Learn More for Your Team</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="bg-white">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What is the philosophy behind Curious Souls Café?
+                            <i class="fas fa-chevron-down icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Curious Souls Café was founded to bridge the gap created by online communication and social bubbles. We aim to break these barriers by facilitating face-to-face conversations, believing in the power of in-person interaction to foster deeper bonds and understanding that online exchanges cannot always provide.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Who typically attends these events?
+                            <i class="fas fa-chevron-down icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Attendees are often diverse individuals, including a mix of locals, expatriates, and people from various professional and cultural backgrounds. The events use English to appeal to a global audience, attracting people who share a common interest in engaging with meaningful questions and exploring ideas collaboratively.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Are the public events free to attend?
+                            <i class="fas fa-chevron-down icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes. Our public events are free and run as a non-profit, community-driven initiative. We don’t charge admission or membership fees. You are only responsible for your own food and drinks at the venue.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How can I join or get more information?
+                            <i class="fas fa-chevron-down icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Our primary platform for organizing events is Meetup, where you can find and sign up for gatherings. You can find a list of our Meetup groups <a href="#community" target="_blank" rel="noopener noreferrer">here</a>. For any questions, feel free to email us at <a href="mailto:hello@curioussouls.cafe">hello@curioussouls.cafe</a>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-actions">
+                    <a href="./pages/faq.html" class="btn btn-secondary"><i class="fas fa-circle-question" style="margin-right:0.35rem;"></i> Read the Full FAQ</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:hello@curioussouls.cafe">Contact Us</a>
+                <a href="https://curioussoulscafe.github.io/links/share-feedback" target="_blank" rel="noopener noreferrer">Share Feedback</a>
+            </div>
+            <p class="footer-copyright">&copy; 2025 Curious Souls Café. A community-driven initiative.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- IMPROVEMENT: Mobile Navigation Toggle ---
+            const nav = document.getElementById('main-nav');
+            const hamburgerBtn = document.getElementById('hamburger-menu');
+            const navLinks = nav.querySelectorAll('a');
+
+            if (hamburgerBtn && nav) {
+                hamburgerBtn.addEventListener('click', () => {
+                    const isOpen = nav.classList.toggle('is-open');
+                    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                    // Optional: Change icon from bars to times (X)
+                    const icon = hamburgerBtn.querySelector('i');
+                    if (isOpen) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+
+                // Close menu when a link is clicked (for single-page navigation)
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('is-open');
+                        hamburgerBtn.setAttribute('aria-expanded', 'false');
+                        const icon = hamburgerBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    });
+                });
+            }
+            
+            // --- Original FAQ accordion ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const currentlyActive = document.querySelector('.faq-item.active');
+                    if (currentlyActive && currentlyActive !== item) {
+                        currentlyActive.classList.remove('active');
+                    }
+                    item.classList.toggle('active');
+                });
+            });
+        });
+
+        // --- Original Smooth scroll with sticky header offset ---
+        (function() {
+            const header = document.querySelector('.main-header');
+
+            function getHeaderOffset() {
+                const rect = header ? header.getBoundingClientRect() : null;
+                const base = rect ? rect.height : 80;
+                return window.innerWidth <= 768 ? Math.round(base - 8) : Math.round(base + 10);
+            }
+
+            function smoothScrollTo(targetEl) {
+                if (!targetEl) return;
+                const top = window.pageYOffset + targetEl.getBoundingClientRect().top - getHeaderOffset();
+                window.scrollTo({
+                    top: top,
+                    behavior: 'smooth'
+                });
+            }
+
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('a[href^="#"]');
+                if (!link) return;
+
+                const hash = link.getAttribute('href');
+                if (hash === '#') return;
+
+                const target = document.querySelector(hash);
+                if (target) {
+                    e.preventDefault();
+                    smoothScrollTo(target);
+                    history.pushState(null, '', hash);
+                }
+            });
+
+            window.addEventListener('load', () => {
+                if (location.hash) {
+                    const target = document.querySelector(location.hash);
+                    if (target) {
+                        setTimeout(() => smoothScrollTo(target), 0);
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

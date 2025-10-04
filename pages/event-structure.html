@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Structure - Curious Souls Café</title>
+    <meta name="description" content="Learn about the structure of Curious Souls Café events, including our multi-round discussion format, question card styles, and facilitation techniques designed for meaningful connection.">
+    <link rel="icon" type="image/x-icon" href="https://app.curioussouls.cafe/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6b46c1;
+            --secondary-color: #a855f7;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        /* --- Header & Hero --- */
+        .main-header {
+            background-color: var(--bg-white);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-dark); }
+        .logo img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-color); }
+        .logo span { font-size: 1.25rem; font-weight: 700; }
+        .hero {
+            background: linear-gradient(to right, #f3f4f6 0%, #ede9fe 20%, #ede9fe 80%, #f3f4f6 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* --- Main Content --- */
+        .content-section {
+            padding: 3rem 1.5rem; /* MODIFIED: Added horizontal padding for mobile view */
+            background-color: var(--bg-white);
+        }
+        .content-body {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .content-body h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .content-body h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+         .content-body h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-top: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        .content-body p, .content-body li {
+            color: var(--text-light);
+        }
+        .content-body a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .content-body a:hover {
+            text-decoration: underline;
+        }
+        .content-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .content-body li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.75rem;
+        }
+        .content-body li::before {
+            content: '\f105'; /* fa-chevron-right */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+        .content-body hr {
+            border: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 2.5rem 0;
+        }
+        .content-body figure {
+            margin: 2rem 0;
+        }
+        .content-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .img-caption {
+            text-align: center;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #9ca3af;
+            margin-top: -0.5rem;
+        }
+        .note-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--text-dark);
+            color: #d1d5db;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .main-footer a { color: #d1d5db; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding-left: 1.5rem; padding-right: 1.5rem; } /* MODIFIED: Added horizontal padding to hero on mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../" class="logo">
+                <img src="https://app.curioussouls.cafe/images/csc_logo.jpg" alt="Curious Souls Cafe Logo">
+                <span>Curious Souls Café</span>
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>A Guide to Our Discussion Rounds</h1>
+                <p>Welcome to the Curious Souls Café, where we create space for meaningful conversations, personal reflection, and shared experiences. Our events are centered around rounds of discussion, designed to encourage connection and the exchange of ideas in a relaxed, inclusive atmosphere.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-body">
+                <!-- <p><strong>Where to find our events (via Meetup)</strong>:</p>
+                <ul>
+                    <li>We’re currently hosting weekly in <a href="https://meetup.com/curious-souls-cafe" target="_blank" rel="noopener noreferrer">Hong Kong</a>, <a href="https://www.meetup.com/curious-souls-cafe-singapore/" target="_blank" rel="noopener noreferrer">Singapore</a>, and, more recently, <a href="https://www.meetup.com/curious-souls-cafe-seoul/" target="_blank" rel="noopener noreferrer">Seoul</a>.</li>
+                    <li>Some of the other regions with irregular events: <a href="https://www.meetup.com/curious-souls-cafe-kuala-lumpur" target="_blank" rel="noopener noreferrer">Kuala Lumpur</a>, <a href="https://www.meetup.com/curious-souls-cafe-taipei" target="_blank" rel="noopener noreferrer">Taipei</a>, <a href="https://www.meetup.com/curious-souls-cafe-osaka/" target="_blank" rel="noopener noreferrer">Osaka</a>, and, occasionally, online via Zoom.</li>
+                </ul>
+                <hr> -->
+
+                <h2>Event Structure</h2>
+                <p>Our event format is continually evolving to better meet the needs of our participants. Below is the typical structure of a Curious Souls Cafe event. (We also offer flexibility to adapt based on specific group preferences.)</p>
+                
+                <h4>Initial Welcome and Introduction</h4>
+                <p>The event begins with a warm welcome. The facilitator introduces themselves and explains the philosophy-cafe-style approach: casual, inclusive, and non-academic, where everyone feels comfortable contributing.</p>
+                <p><strong>Facilitation Style:</strong> Our facilitators view themselves as guides rather than hosts. The aim is to foster a relaxed space where participants can freely explore ideas.</p>
+                <p>If it's your first time attending, you’ll receive a welcome leaflet or a <a href="https://curioussoulscafe.substack.com/p/welcome" target="_blank" rel="noopener noreferrer">link</a> to view it online.</p>
+                
+                <figure>
+                    <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe373ecd3-967e-4b6a-b440-178d0061cc37_5760x3840.jpeg" alt="A group of people engaged in a discussion around a table in a cafe.">
+                    <figcaption class="img-caption">(Photo by Andrea Piacquadio on Unsplash)</figcaption>
+                </figure>
+
+                <h4>Multiple Rounds of Discussion</h4>
+                <p>Each event consists of <strong>multiple rounds of discussion</strong>, carefully designed to balance structure and spontaneity:</p>
+                <ol>
+                    <li><p><strong>Round One</strong>: Thoughtfully curated questions to encourage personal sharing and reflection.</p></li>
+                    <li><p><strong>Round Two:</strong> Participant-generated questions for deeper, organic conversations. (Optional)</p></li>
+                </ol>
+                <div class="note-box"><p><strong>Note:</strong> This only describes our typical sessions. There may be sessions conducted in different ways that better suit the events or facilitators. For example, round two may become round one, and when we do not have enough time, we may end up with having just one round.</p></div>
+
+                <h3>Round One: Curated Question Cards</h3>
+                <p>The session begins with participants selecting from a deck of thoughtfully curated question cards. These questions aren’t random prompts; they’re intentionally chosen to spark meaningful reflection and discussion while steering clear of overly sensitive topics.</p>
+                <p>The primary goal of this round is to foster genuine connections through personal sharing. Additionally, it helps participants build rapport with one another and become familiar with the question format, preparing them for a more in-depth second round.</p>
+
+                <figure>
+                    <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2a401d4d-9321-4eaf-a1b8-0e79f1ca84ac_4205x3154.jpeg" alt="Physical question cards with prompts laid out on a table.">
+                    <figcaption class="img-caption">An example of prepared question cards.</figcaption>
+                </figure>
+                
+                <p>This round can be conducted in many different styles. The facilitator will select the most appropriate option based on the group and the nature of the event.</p>
+                
+                <h4>Style One: Open Discussion (Most Common)</h4>
+                <p>In this style, participants are invited to draw three cards from the deck. They then choose one question to present to the group for discussion. To enhance bonding, participants can be grouped into teams (e.g., 2–3 people per team).</p>
+                <p>The facilitator or group decides which team begins. Often, the first person to arrive throws a <a href="https://app.curioussouls.cafe/pages/dice.html" target="_blank" rel="noopener noreferrer">colorful dice</a> to determine who starts. The person asking the question answers first, followed by others in turn. Participants are always free to pass if they feel uncomfortable answering.</p>
+
+                <h4>Style Two: Paired Discussion</h4>
+                <p>In this style, the facilitator presents the group with four cards. Participants independently select one card that resonates with them. Afterward, they pair up to discuss their chosen questions. Once finished, the pairs rejoin the larger group to share their perspectives.</p>
+
+                <h4>Style Three: Random Reveal</h4>
+                <p>With this style, the facilitator randomly reveals a few cards (e.g., four) from the deck at a time. Each participant selects one question to answer. After everyone has answered, the facilitator reveals a new set of four cards, and the process begins again.</p>
+
+                <h3>Round Two: Write Your Own Questions</h3>
+                <p>In the optional second round, participants take a more active role in shaping the discussion. This round is intentionally less structured, allowing for greater creativity and spontaneity.</p>
+                <p>Each participant writes down a question they’d like to discuss, inspired by their current thoughts or experiences. Once everyone has written their questions, the group decides which topics to discuss first—the questions with the most interest become the focus of the discussion.</p>
+                 <figure>
+                    <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F68363e36-a331-454e-a5a2-25bae0b25e8c_4576x3432.jpeg" alt="Handwritten questions on small pieces of paper submitted by participants.">
+                    <figcaption class="img-caption">An example of write-your-own questions from participants.</figcaption>
+                </figure>
+                
+                <h3>Moments of Truth</h3>
+                <p>The event concludes with a 5–10 minute reflection session. Participants share their key takeaways, insights, or lessons learned. This final round allows for collective wisdom to emerge and helps cement the connections and ideas formed during the event.</p>
+
+                <h3>Post-Event Free Talk and Networking</h3>
+                <p>After the formal event ends, participants are welcome to continue conversations informally or join a region-specific <strong>WhatsApp</strong> group to share afterthoughts, resources, and reflections.</p>
+                <hr>
+
+                <h2>Optional Facilitation Ideas</h2>
+                <p>Facilitators are free to adapt these ideas depending on the flow of the gathering:</p>
+                <ul>
+                    <li><strong>General Tips:</strong> Consider using color-coded or leveled question cards to gradually guide the group from lighter topics to deeper reflections.</li>
+                    <li><strong>Ending a Discussion:</strong> If the energy feels unresolved, consider asking: <em>“Does anyone have further thoughts or final reflections before we move on?”</em> This ensures the topic feels complete.</li>
+                    <li><strong>For Large Groups (9+):</strong>
+                        <ul>
+                            <li>Smaller groups are more intimate. In larger groups, facilitators may need to actively manage conversation time to ensure everyone can contribute.</li>
+                            <li>Encourage participants to speak up so everyone can hear. Introverts may share less, so consider gently circling back to them before moving to a new question.</li>
+                            <li>It's okay to shorten or skip Round Two if Round One's discussion is particularly fruitful.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2>Make Your Own Question Cards</h2>
+                <p>Facilitators may also create custom question cards to fit a specific event theme. For example, questions can be categorized into multiple levels to allow participants to ease into deeper topics.</p>
+                 <figure>
+                    <img src="https://substackcdn.com/image/fetch/w_1248,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3f47e36f-851a-44c5-b2b1-b0f8955e67ba_1248x832.png" alt="Examples of question cards for 'Love Relationships' sorted into three difficulty levels.">
+                    <figcaption class="img-caption">Love Relationships question cards of different levels, co-developed with our Singaporean facilitator.</figcaption>
+                </figure>
+                <ul>
+                    <li><strong>Level One</strong>: Mostly light questions to ease participants into the conversation.</li>
+                    <li><strong>Level Two</strong>: Mid-level questions that might require more brain power.</li>
+                    <li><strong>Level Three</strong>: Deep, more thought-provoking questions.</li>
+                </ul>
+                <div class="note-box"><p>On the <a href="https://app.curioussouls.cafe/" target="_blank" rel="noopener noreferrer">web app</a>, this can be achieved by using the type filter within any topic page.</p></div>
+                <figure>
+                    <img src="https://substackcdn.com/image/fetch/w_1302,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F829090b2-e74a-4602-85b7-6493365b41af_1302x1190.png" alt="A screenshot of the Curious Souls Café web app showing filters for 'light' and 'deep' questions.">
+                    <figcaption class="img-caption">Filtering questions by type (e.g., light and deep) on our web app.</figcaption>
+                </figure>
+                <hr>
+                
+                <h2>The Dice Decides</h2>
+                <p>To learn about how we use our colored dice (or the virtual dice roller on our web app) to create a fun and fair way to begin a discussion, please read our detailed article on the topic.</p>
+                <a href="./roll-the-dice.html" target="_blank" rel="noopener noreferrer">Read: Roll the Colored Dice: A Meaningful Way to Decide Who Starts the Discussion &rarr;</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+             <p><a href="/">Back to Home</a></p>
+            <p>&copy; 2025 Curious Souls Café. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

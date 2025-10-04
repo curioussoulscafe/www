@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web App for Meaningful Conversations - Curious Souls Café</title>
+    <meta name="description" content="An open-source web app and companion for the Curious Souls Café global community, designed to spark meaningful conversations.">
+    <link rel="icon" type="image/x-icon" href="https://app.curioussouls.cafe/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6b46c1;
+            --secondary-color: #a855f7;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Larger inline code without bold */
+        code, kbd, samp {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.9rem;
+            font-weight: 400;       /* ensure not bold */
+            background: #f3f4f6;
+            color: #111827;
+            padding: 0.08em 0.32em;
+            border-radius: 0.35rem;
+            border: 1px solid #e5e7eb;
+        }
+        pre code {
+            font-size: 0.9rem;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            font-weight: 400;       /* ensure not bold inside blocks */
+        }
+        pre {
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow: auto;
+        }
+
+        /* --- Header & Hero --- */
+        .main-header {
+            background-color: var(--bg-white);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-dark); }
+        .logo img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-color); }
+        .logo span { font-size: 1.25rem; font-weight: 700; }
+        .hero {
+            background: linear-gradient(to right, #f3f4f6 0%, #ede9fe 20%, #ede9fe 80%, #f3f4f6 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .hero p a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .hero p a:hover {
+            text-decoration: underline;
+        }
+        
+        /* --- Main Content --- */
+        .content-section {
+            padding: 3rem 0;
+            background-color: var(--bg-white);
+        }
+        .content-body {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .content-body h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .content-body h3 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .content-body h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-top: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        .content-body p, .content-body li {
+            color: var(--text-light);
+        }
+        .content-body a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .content-body a:hover {
+            text-decoration: underline;
+        }
+        .content-body ul, .content-body ol {
+            padding-left: 25px;
+        }
+        .content-body li {
+            position: relative;
+            padding-left: 10px;
+            margin-bottom: 0.75rem;
+        }
+        .content-body ul li::before {
+            content: '\f105'; /* fa-chevron-right */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            left: -20px;
+            top: 4px;
+        }
+        .content-body ol li {
+            padding-left: 5px;
+        }
+        .content-body hr {
+            border: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 2.5rem 0;
+        }
+        .content-body figure {
+            margin: 2rem 0;
+        }
+        .content-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .img-caption {
+            text-align: center;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #9ca3af;
+            margin-top: -0.5rem;
+        }
+        .note-box {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--text-dark);
+            color: #d1d5db;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .main-footer a { color: #d1d5db; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            code, kbd, samp { font-size: 0.9rem; } /* slight scale-down for narrow screens */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../" class="logo">
+                <img src="https://app.curioussouls.cafe/images/csc_logo.jpg" alt="Curious Souls Cafe Logo">
+                <span>Curious Souls Café</span>
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Web App for Meaningful Conversations</h1>
+                <p>Welcome to the Curious Souls Café! This <a href="https://app.curioussouls.cafe/">live web app</a> is an open-source tool and a companion for our global community, designed to spark meaningful conversations, foster genuine connection, and support personal growth.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="content-body">
+                            
+                <h2 id="-getting-started">🚀 Getting Started</h2>
+                <p>Step into meaningful conversations with ease! Here's how to use the app:</p>
+                <ol>
+                    <li><p><strong>Launch the Web App</strong><br>Open the app in your browser: <a href="https://app.curioussouls.cafe/">app.curiousouls.cafe</a>.</p></li>
+                    <li><p><strong>Invite Others</strong><br>Share the QR code on the main page so others can join instantly.</p></li>
+                    <li><p><strong>Pick a Topic</strong><br>Choose a question deck that resonates with your group. The <a href="https://app.curioussouls.cafe/pages/icebreaker.html">Icebreaker</a> deck is recommended for first-timers.</p></li>
+                    <li><p><strong>Start the Conversation</strong><br>Each person chooses one of the displayed questions, and the group decides which to discuss first.</p></li>
+                </ol>
+            
+                <h2 id="what-is-curious-souls-caf">What is Curious Souls Café?</h2>
+                <p>Curious Souls Café is a "third place" away from home and work, founded to counter the isolation of modern life. It's a global community that hosts events where people can explore life's big questions together. Our philosophy is centered on the power of face-to-face conversations to build deeper bonds in a safe, non-judgmental environment. This web app was originally created to support our in-person and online events.</p>
+                <p>To learn more about the initiative, check out our <a href="https://curioussouls.cafe/">main website</a>.</p>
+
+                <div class="note-box"><p><strong>Pro Tip:</strong>
+                    <br>- For a deeper understanding of how our events are structured, including different conversation styles and facilitation tips, check out our <a href="https://curioussouls.cafe/event-structure.html">Event Structure Guide</a>.
+                    <br>- Curious about how our past events went? Explore our <a href="https://curioussoulscafe.substack.com/archive">Event Archive</a> on our blog for anonymous highlights from our meetups.</p>
+                </div>
+
+                <h2 id="-the-question-decks">📚 The Question Decks</h2>
+                <p>At the heart of our gatherings are questions designed to guide soul-searching discussions. This app includes numerous decks on diverse themes, many of which were co-developed with our global community.</p>
+                <ul>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/adulthood.html">Adulthood</a></strong>: Explore the holistic journey of adulting—personal growth, authenticity, and connection.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/authenticity.html">Authenticity</a></strong>: Align your actions with your values and embrace your true self.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/entrepreneurship.html">Entrepreneurship</a></strong>: Ignite self-leadership, entrepreneurial thinking, and bold experimentation in designing a purposeful, resilient life.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/friendship.html">Friendship</a></strong>: Deepen connection and explore the many facets of meaningful friendships.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/global-curiosities.html">Global Curiosities</a></strong>: Questions written by participants from our events around the world.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/happiness.html">Happiness</a></strong>: Explore your personal definition and journey with happiness.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/interdependence.html">Interdependence</a></strong>: Explore interdependent connection and the invisible threads that sustain our relationships and communities.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/icebreaker.html">Icebreaker</a></strong>: Spark lighthearted, meaningful, and heart-warming conversations.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/inner-child.html">Inner Child</a></strong>: Reconnect with your playful younger self and nurture creativity.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/legacy.html">Legacy</a></strong>: Reflect on the impact you make in the world and transform your values into a meaningful legacy.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/love-relationships.html">Love Relationships</a></strong>: Reflect on the dynamics of love and intimacy.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/parenting.html">Parenting</a></strong>: Inspire reflection, share insights, and spark meaningful conversations about the joys, challenges, and growth in raising children.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/purpose.html">Purpose</a></strong>: Explore purpose, meaning, and the journey toward a fulfilling life, blending wisdom from philosophy, literature, and personal reflection.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/reflection.html">Reflection</a></strong>: Explore how reflection transforms memories into meaning, challenges into resilience, and endings into new beginnings.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/reimagine.html">Reimagine</a></strong>: Explore evolving perspectives, personal growth and reimagine life’s narratives through self-awareness, curiosity, and renewal.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/the-mind-speaks.html">The Mind Speaks</a></strong>: Reflect on thoughts, feelings, mindfulness, and personal well-being.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/transitions.html">Transitions</a></strong>: Navigate life’s changes with prompts that foster reflection and personal growth.</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/true-wealth.html">True Wealth</a></strong>: Explore what it means to live a truly rich life—beyond material wealth—through questions that spark reflection on abundance, sufficiency, connection, and purpose</li>
+                  <li><strong><a href="https://app.curioussouls.cafe/pages/work-that-resonates.html">Work that Resonates</a></strong>: Explore your evolving relationship with work, purpose, and fulfillment.</li>
+                </ul>
+            
+                <p>In the app, questions marked with a spiral emoji 🌀 are deeper, while those with a seedling emoji 🌱 are introductory.</p>
+            
+                <p>💖 We express our heartfelt gratitude to the Singaporean facilitator(s) for the question sets for <a href="https://app.curioussouls.cafe/pages/happiness.html">Happiness</a>, <a href="https://app.curioussouls.cafe/pages/love-relationships.html">Love Relationships</a>, and <a href="https://app.curioussouls.cafe/pages/the-mind-speaks.html">The Mind Speaks</a>, and to all participants who contributed to the <a href="https://app.curioussouls.cafe/pages/global-curiosities.html">Global Curiosities</a> deck.</p>
+            
+                <h2 id="-app-features-amp-tools">✨ App Features & Tools</h2>
+                <ul>
+                    <li><p><strong>Get Random Questions</strong>: Select the number of questions to display from any deck.</p></li>
+                    <li><p><strong>Save Questions</strong>: Tap any question to add it to a "Saved Questions" list for easy reference during a discussion.</p></li>
+                    <li><p><strong>Submit Custom Questions</strong>: Add your own list of questions for a private session. Your custom list is saved locally in your browser.</p></li>
+                    <li><p><strong>Search and Filter</strong>: Use the search bar on the main page to find topics, or within a topic page to find specific questions.</p></li>
+                    <li><p><strong>Question Number</strong>: There is a question number at the top right corner of each question (except for the dymanic question deck, 'All Questions') that can be shared with other participants to quickly jump to a particular question.</p></li>
+                    <li><p><strong>Favorite Topics</strong>: Tap the star icon next to a topic to move it to the top of the list for quick access.</p></li>
+                    <li><p><strong>The Dice Roller</strong>: Access the <a href="https://app.curioussouls.cafe/pages/dice.html">Virtual Dice Roller</a> via the floating dice icon on any page. This is a fun tool used to decide who starts, break ties, or engage in meaningful "punishment" prompts.</p></li>
+                    <li><p><strong>Optimized for On-the-Go</strong>: The web app is designed to work seamlessly on smartphones and tablets.</p></li>
+                    <li><p><strong>Join a Live Discussion</strong>: During special events, a prominent "Live Discussion" button may appear on the main page, giving you access to real-time questions curated for that event.</p></li>
+                </ul>
+            
+                <h2 id="-tips-for-using-the-app">💡 Tips for Using the App</h2>
+                <ul>
+                    <li><p><strong>Highlight the Chosen Question</strong>: Tap the chosen question to highlight it. This helps everyone focus on the active prompt.</p></li>
+                    <li><p><strong>Question Color</strong>: A random color (blue, red, or yellow) will be revealed after tapping. These colors match the default options of the dice, which can be used to decide whose question goes first.</p></li>
+                    <li><p><strong>Return to Main Page</strong>: Clicking the round logo at the top of any page will take you back to the topic selection screen.</p></li>
+                    <li><p><strong>Quick Scroll to Top</strong>: Use the sticky "Top" button at the bottom-right to quickly return to the top of any page.</p></li>
+                    <li><p><strong>Direct Topic Links</strong>: Each topic has a unique URL (e.g., <code>&lt;URL&gt;/pages/icebreaker.html</code>) that you can share directly with participants.</p></li>
+                </ul>
+            
+                <h2 id="-for-contributors">📂 For Contributors</h2>
+                <p>The web app is <a href="https://github.com/curioussoulscafe/curious-souls-cafe" target="_blank">open source</a> and organized for easy contributions.</p>
+            
+                <h3>File Organization</h3>
+                <ul>
+                    <li><p><code>index.html</code> is the main page in the <strong>root folder</strong>.</p></li>
+                    <li><p>Topic pages (e.g., <code>icebreaker.html</code>) are in the <strong><code>/pages</code></strong> folder.</p></li>
+                    <li><p>Question sets (<code>.txt</code> files) are in the <strong><code>/questions</code></strong> folder.</p></li>
+                    <li><p>Images and other data are in the <strong><code>/images</code></strong> and <strong><code>/data</code></strong> folders, respectively.</p></li>
+                </ul>
+            
+                <h3>How to Add New Question Sets</h3>
+                <ol>
+                    <li><p><strong>Add Questions File</strong>: Create a new <code>.txt</code> file in the <code>/questions</code> folder (e.g., <code>MyNewTopic.txt</code>). Add one question per line.</p></li>
+                    <li><p><strong>Create HTML Page</strong>: Duplicate an existing topic page (e.g., <code>icebreaker.html</code>) in the <code>/pages</code> folder and rename it (e.g., <code>mynewtopic.html</code>). Update the file's content to reference your new topic and <code>.txt</code> file.</p></li>
+                    <li><p><strong>Register the Deck</strong>: In <code>index.html</code>, find the <code>TOPIC_CONFIGS</code> array and add a new object for your topic, specifying its <code>name</code>, <code>htmlFileName</code>, and <code>txtUrl</code>.</p></li>
+                    <li><p><strong>Update the Service Worker</strong>: Add the file paths for your new <code>.txt</code> and <code>.html</code> files to the <code>FILES_TO_CACHE</code> array in <code>service-worker.js</code>. This ensures the new content can be cached.</p></li>
+                </ol>
+            
+                <h3>Managing Live Discussion Questions</h3>
+                <p>The "Live Discussion" feature is controlled by the presence of a <code>live-discussion.txt</code> file in the <code>/questions</code> folder. Add the file to enable the feature for an event and remove it to disable it afterward. You will also need to uncomment/comment out the related elements in <code>index.html</code>.</p>
+                <hr>
+                <p>Thank you for visiting the Curious Souls Café! We hope it sparks many interesting conversations. 😊</p>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+             <p><a href="/">Back to Home</a></p>
+            <p>&copy; 2025 Curious Souls Café. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

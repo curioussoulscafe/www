@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curious Souls Café for the Workplace</title>
+    <meta name="description" content="Strengthen your team with Curious Souls Café for the Workplace. We facilitate meaningful conversations to build authentic connection, psychological safety, and resilience.">
+    <link rel="icon" type="image/x-icon" href="https://app.curioussouls.cafe/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6b46c1;
+            --secondary-color: #a855f7;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        /* --- Header & Hero --- */
+        .main-header {
+            background-color: var(--bg-white);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-dark); }
+        .logo img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-color); }
+        .logo span { font-size: 1.25rem; font-weight: 700; }
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 1.5rem;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover { color: var(--primary-color); }
+        .hero {
+            background: linear-gradient(to right, #f3f4f6 0%, #ede9fe 20%, #ede9fe 80%, #f3f4f6 100%);
+            padding: 5rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 650px;
+            margin: 0 auto 2rem auto;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid transparent;
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+        }
+        .btn-primary:hover { background-color: #5b21b6; transform: translateY(-2px); }
+
+        /* --- Sections --- */
+        section { padding: 4rem 0; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.25rem; margin-bottom: 0.5rem; }
+        .section-header p { color: var(--text-light); font-size: 1.125rem; max-width: 700px; margin: auto; }
+        #challenge { background-color: var(--bg-white); }
+        .challenge-content ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .challenge-content li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+        .challenge-content li::before {
+            content: '\f00d'; /* Font Awesome 'times' icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #ef4444;
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+        
+        .solution-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .feature-card {
+            padding: 2rem;
+            background-color: var(--bg-light);
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+        .feature-card .icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .feature-card h3 { margin-top: 0; font-size: 1.25rem; }
+        .feature-card p { color: var(--text-light); }
+        
+        #case-study { background-color: var(--bg-white); }
+        .case-study-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .case-study-text h3 {
+            font-size: 1.75rem;
+            margin-top: 0;
+        }
+        .case-study-questions {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+        .case-study-questions h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .case-study-questions ul { list-style: none; padding: 0; }
+        .case-study-questions li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.5rem;
+        }
+        .case-study-questions li::before {
+            content: '\f10d'; /* Font Awesome 'quote-left' icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        #process { background-color: var(--bg-white); }
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            position: relative;
+        }
+        .step {
+            width: 23%;
+            position: relative;
+            z-index: 1;
+        }
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--bg-white);
+        }
+        .step h4 { font-size: 1.1rem; }
+        .process-line {
+            position: absolute;
+            top: 35px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 4px;
+            background-color: var(--border-color);
+            z-index: 0;
+        }
+
+        #cta {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+        #cta h2 { font-size: 2.25rem; }
+        #cta p {
+            color: #d1d5db;
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 1rem auto 2rem;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--text-dark);
+            color: #d1d5db;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .main-footer a { color: #d1d5db; text-decoration: none; }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.25rem; }
+            .hero p { font-size: 1.125rem; }
+            .case-study-content { grid-template-columns: 1fr; }
+            .process-steps { flex-direction: column; gap: 2rem; }
+            .process-line { display: none; }
+            .step { width: 100%; }
+            .main-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../" class="logo">
+                <img src="https://app.curioussouls.cafe/images/csc_logo.jpg" alt="Curious Souls Cafe Logo">
+                <span>Curious Souls Café</span>
+            </a>
+        </div>
+    </header>
+    
+    <main>
+
+        <section class="hero">
+            <div class="container">
+                <h1>Curious Souls Café for the Workplace</h1>
+                <p>Beyond Team Building, Towards Authentic Connection. We offer a unique, structured approach to foster the deep trust and psychological safety that underpin high-performing teams.</p>
+                <a href="mailto:hello@curioussouls.cafe?subject=Inquiry: Curious Souls Café for the Workplace" class="btn btn-primary"><i class="fas fa-calendar-check" style="margin-right: 0.2rem;"></i> Schedule a Consultation</a>
+            </div>
+        </section>
+
+        <section id="challenge">
+            <div class="container">
+                <div class="section-header">
+                    <h2>The Challenge: Disconnection in the Modern Workplace</h2>
+                    <p>Standard team meetings focus on tasks, leaving little room for personal connections that build trust. This can lead to significant challenges that hinder performance and well-being.</p>
+                </div>
+                <div class="challenge-content">
+                    <ul>
+                        <li>Low morale and engagement.</li>
+                        <li>Poor communication and collaboration.</li>
+                        <li>Reduced psychological safety, hindering creativity and honest feedback.</li>
+                        <li>Higher employee turnover.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Solution: A Framework for Meaningful Conversation</h2>
+                    <p>We create a space where colleagues can share experiences and perspectives in a structured and safe environment. Our sessions are a facilitated experience designed to foster authentic human connection.</p>
+                </div>
+                <div class="solution-content">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-puzzle-piece"></i></div>
+                        <h3>Structured Curiosity</h3>
+                        <p>Our sessions use thoughtfully designed question cards or a custom app to guide conversations that encourage reflection and sharing.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-shield-heart"></i></div>
+                        <h3>Psychological Safety</h3>
+                        <p>The format is non-judgmental, with no right or wrong answers. The focus is on active listening and honoring diverse perspectives to build mutual respect.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-handshake-angle"></i></div>
+                        <h3>Authentic Connection</h3>
+                        <p>By sharing personal stories, team members see each other as multifaceted individuals, building empathy and stronger interpersonal bonds.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="case-study">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How It Works: A Case Study</h2>
+                    <p>Our sessions are highly adaptable. A recent parenting-themed session for a remote team of an industry leader in the tech sector provides a clear example of our format in action. </p>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-text">
+                        <h3>Fostering Bonds Through Shared Experience</h3>
+                        <p>Conducted over a team call, the session used our custom app to present questions around the theme of "Parenting." Team members, including parents of children at various life stages, took turns sharing their stories and insights.</p>
+                        <p>This created a space for vulnerability and empathy, allowing colleagues to connect on a human level and understand each other's lives outside of work. The positive feedback highlighted that it was "nice to get to know people better."</p>
+                    </div>
+                    <div class="case-study-questions">
+                        <h4>Example Questions Discussed</h4>
+                        <ul>
+                            <li>What's one thing your child has done that left you completely speechless?</li>
+                            <li>What's your quickest reset button when parenting stress starts to bubble up?</li>
+                            <li>Have you created a new family tradition that feels uniquely yours?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="benefits">
+             <div class="container">
+                <div class="section-header">
+                    <h2>Tangible Benefits for Your Workplace</h2>
+                    <p>Investing in genuine connection is a powerful driver of engagement, loyalty, and performance.</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <h3>Strengthened Team Cohesion</h3>
+                        <p>Participants report feeling a stronger connection to their colleagues.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-brain"></i></div>
+                        <h3>Enhanced Psychological Safety</h3>
+                        <p>Builds the trust required for team members to take risks and offer honest feedback in their daily work.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="far fa-smile"></i></div>
+                        <h3>Increased Empathy</h3>
+                        <p>Fosters a more understanding and supportive work environment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Improved Morale</h3>
+                        <p>Providing opportunities for genuine connection is a powerful driver of engagement and loyalty.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Collaborative Process</h2>
+                    <p>We partner with you to design a program that meets your team's unique needs and objectives.</p>
+                </div>
+                <div class="process-steps">
+                    <div class="process-line"></div>
+                    <div class="step">
+                        <div class="step-icon">1</div>
+                        <h4>Initial Consultation</h4>
+                        <p>We meet to understand your team's dynamics, challenges, and goals.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <h4>Custom Program Design</h4>
+                        <p>We tailor questions and themes to maximize relevance and impact for your team.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <h4>Facilitated Sessions</h4>
+                        <p>Our experienced facilitator leads each session, either in-person or virtually.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">4</div>
+                        <h4>Debrief & Feedback</h4>
+                        <p>We gather feedback and provide a summary of themes to measure impact.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta">
+            <div class="container">
+                <h2>Ready to Build a More Connected Team?</h2>
+                <p>Let's build a more creative, resilient, and connected team together. Contact us to discuss how we can tailor a "Curious Souls Cafe" experience for your workplace.</p>
+                <a href="mailto:hello@curioussouls.cafe?subject=Inquiry: Curious Souls Café for the Workplace" class="btn btn-primary" style="background-color: white; color: var(--primary-color);"><i class="fas fa-envelope" style="margin-right: 0.2rem;"></i> Schedule Your Consultation</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Curious Souls Café. All Rights Reserved.</p>
+            <p><a href="mailto:hello@curioussouls.cafe">hello@curioussouls.cafe</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
