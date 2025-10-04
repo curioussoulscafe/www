@@ -38,6 +38,9 @@
             background-color: var(--bg-white);
             padding: 1rem 0;
             border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         .main-header .container {
             display: flex;
@@ -47,6 +50,23 @@
         .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-dark); }
         .logo img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-color); }
         .logo span { font-size: 1.25rem; font-weight: 700; }
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 1.5rem;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover { color: var(--primary-color); }
+        .hamburger-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
         .hero {
             background: linear-gradient(to right, #f3f4f6 0%, #ede9fe 20%, #ede9fe 80%, #f3f4f6 100%);
             padding: 4rem 0;
@@ -166,6 +186,23 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero { padding-left: 1.5rem; padding-right: 1.5rem; } /* MODIFIED: Added horizontal padding to hero on mobile */
+            .hamburger-menu { display: block; }
+            .main-nav {
+                position: fixed; top: 0; right: 0; width: 280px; height: 100%;
+                background-color: var(--bg-white); z-index: 1000; display: flex;
+                flex-direction: column; padding: 5rem 0 2rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .main-nav.is-open { transform: translateX(0); }
+            .main-nav a {
+                margin: 0; padding: 1rem 2rem; font-size: 1.1rem;
+                color: var(--text-dark); border-bottom: 1px solid var(--border-color);
+            }
+            .main-nav a:hover {
+                background-color: var(--bg-light); color: var(--primary-color);
+            }
         }
     </style>
 </head>
@@ -177,6 +214,16 @@
                 <img src="https://app.curioussouls.cafe/images/csc_logo.jpg" alt="Curious Souls Cafe Logo">
                 <span>Curious Souls Café</span>
             </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="./introduction.html">About</a>
+                <a href="./events.html">Events</a>
+                <a href="./web-app.html">Tools</a>
+                <a href="./workplace.html">For the Workplace</a>
+                <a href="./faq.html">FAQ</a>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="Open navigation menu" aria-controls="main-nav" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
     
@@ -190,13 +237,6 @@
 
         <section class="content-section">
             <div class="content-body">
-                <!-- <p><strong>Where to find our events (via Meetup)</strong>:</p>
-                <ul>
-                    <li>We’re currently hosting weekly in <a href="https://meetup.com/curious-souls-cafe" target="_blank" rel="noopener noreferrer">Hong Kong</a>, <a href="https://www.meetup.com/curious-souls-cafe-singapore/" target="_blank" rel="noopener noreferrer">Singapore</a>, and, more recently, <a href="https://www.meetup.com/curious-souls-cafe-seoul/" target="_blank" rel="noopener noreferrer">Seoul</a>.</li>
-                    <li>Some of the other regions with irregular events: <a href="https://www.meetup.com/curious-souls-cafe-kuala-lumpur" target="_blank" rel="noopener noreferrer">Kuala Lumpur</a>, <a href="https://www.meetup.com/curious-souls-cafe-taipei" target="_blank" rel="noopener noreferrer">Taipei</a>, <a href="https://www.meetup.com/curious-souls-cafe-osaka/" target="_blank" rel="noopener noreferrer">Osaka</a>, and, occasionally, online via Zoom.</li>
-                </ul>
-                <hr> -->
-
                 <h2>Event Structure</h2>
                 <p>Our event format is continually evolving to better meet the needs of our participants. Below is the typical structure of a Curious Souls Cafe event. (We also offer flexibility to adapt based on specific group preferences.)</p>
                 
@@ -300,5 +340,25 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('main-nav');
+            const hamburgerBtn = document.getElementById('hamburger-menu');
+            if (hamburgerBtn && nav) {
+                hamburgerBtn.addEventListener('click', () => {
+                    const isOpen = nav.classList.toggle('is-open');
+                    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                    const icon = hamburgerBtn.querySelector('i');
+                    if (isOpen) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
