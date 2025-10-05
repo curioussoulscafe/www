@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore insights and summaries from Curious Souls Café gatherings around the world. Delve into conversations about life, happiness, success, and personal growth.">
+    <title>Insights From Our Gatherings - Curious Souls Café</title>
+    <link rel="icon" type="image/x-icon" href="https://app.curioussouls.cafe/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6b46c1;
+            --secondary-color: #a855f7;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .main-header {
+            background-color: var(--bg-white);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-dark); }
+        .logo img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-color); }
+        .logo span { font-size: 1.25rem; font-weight: 700; }
+        .main-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 1.5rem;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover { color: var(--primary-color); }
+        .hamburger-menu {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        section { 
+            padding: 4rem 0; 
+            scroll-margin-top: 90px;
+        }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.25rem; margin-bottom: 0.5rem; }
+        .section-header p { color: var(--text-light); font-size: 1.125rem; max-width: 700px; margin: auto; }
+
+        #insights { background-color: var(--bg-white); }
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .insight-card {
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: var(--bg-white);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .insight-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.07); }
+        .insight-card a {
+            color: inherit;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .insight-card-content { 
+            padding: 1.5rem; 
+            flex-grow: 1;
+        }
+        .insight-card-content span {
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 0.875rem;
+        }
+        .insight-card-content h3 { margin: 0.5rem 0; }
+        .insight-card-content blockquote {
+            margin: 1rem 0 0;
+            padding-left: 1rem;
+            border-left: 3px solid var(--secondary-color);
+            color: var(--text-light);
+            font-style: italic;
+        }
+        .main-footer {
+            background-color: var(--text-dark);
+            color: #d1d5db;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .main-footer a { color: #d1d5db; text-decoration: none; }
+
+        @media (max-width: 768px) {
+            section { padding: 3rem 0; scroll-margin-top: 72px; }
+            .hamburger-menu { display: block; }
+            .main-nav {
+                position: fixed; top: 0; right: 0; width: 280px; height: 100%;
+                background-color: var(--bg-white); z-index: 1000; display: flex;
+                flex-direction: column; padding: 5rem 0 2rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .main-nav.is-open { transform: translateX(0); }
+            .main-nav a {
+                margin: 0; padding: 1rem 2rem; font-size: 1.1rem;
+                color: var(--text-dark); border-bottom: 1px solid var(--border-color);
+            }
+            .main-nav a:hover {
+                background-color: var(--bg-light); color: var(--primary-color);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="https://app.curioussouls.cafe/images/csc_logo.jpg" alt="Curious Souls Cafe Logo">
+                <span>Curious Souls Café</span>
+            </a>
+            <nav class="main-nav" id="main-nav">
+                <a href="../about/">About</a>
+                <a href="../events/">Events</a>
+                <a href="../app/">App</a>
+                <a href="../workplace/">For the Workplace</a>
+                <a href="../blog/">Blog</a>
+                <a href="../faq/">FAQ</a>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="Open navigation menu" aria-controls="main-nav" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="insights">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Insights From Our Gatherings</h2>
+                    <p>Curious about our conversations? Here's a glimpse into the profound and thought-provoking topics we've explored together in our sessions across the globe.</p>
+                </div>
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/authenticity-values-and-responsibility-conversations-at-curious-souls-cafe-singapore" aria-label="Read: Singapore - On Authenticity, Values & Responsibility">
+                            <div class="insight-card-content">
+                                <span>Singapore / January 2025</span>
+                                <h3>On Authenticity, Values & Responsibility</h3>
+                                <blockquote>The conversation moved from personal growth goals like authenticity and mindfulness to the complexities of personal responsibility, and challenging gender stereotypes in modern society.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/exploring-love-happiness-and-success-deep-conversations-with-curious-souls-in-singapore" aria-label="Read: Singapore - On the Nature of Love, Happiness & Success">
+                            <div class="insight-card-content">
+                                <span>Singapore / January 2025</span>
+                                <h3>On Love, Happiness & Success</h3>
+                                <blockquote>Is love an action or a reaction? This question sparked a deep philosophical debate, exploring love as a conscious choice. Success was similarly defined not by comparison, but by self-growth and inner peace.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/unpacking-lifes-big-questions-at-the-first-curious-souls-cafe-meetup-in-kuala-lumpur" aria-label="Read: Kuala Lumpur - On Overcoming Self-Doubt & Facing Mortality">
+                            <div class="insight-card-content">
+                                <span>Kuala Lumpur / January 2025</span>
+                                <h3>On Self-Doubt & Facing Mortality</h3>
+                                <blockquote>Participants identified self-doubt as a major obstacle, agreeing that "baby steps" and "showing up" are powerful first moves. The conversation also touched on facing mortality as a motivator to live more fully.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/on-crafting-a-legacy-conversations-with-curious-souls-in-singapore" aria-label="Read: Singapore - On Crafting a Legacy">
+                            <div class="insight-card-content">
+                                <span>Singapore / January 2025</span>
+                                <h3>On Crafting a Legacy</h3>
+                                <blockquote>If you could write your own obituary, what would it say? This led to a profound dialogue about mortality, values, and the impact of the small, meaningful moments that define a life well-lived.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/on-addiction-and-happiest-memories" aria-label="Read: Taipei - On Addiction & Simple Pleasures">
+                            <div class="insight-card-content">
+                                <span>Taipei / December 2024</span>
+                                <h3>On Addiction & Simple Pleasures</h3>
+                                <blockquote>What's your thought on addiction? The group discussed how many addictions stem from underlying issues and the importance of mindfulness in finding happiness in simple, everyday moments.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/from-minimalism-to-imposter-syndrome-and-ai" aria-label="Read: Taipei - On Imposter Syndrome, AI & Minimalism">
+                            <div class="insight-card-content">
+                                <span>Taipei / December 2024</span>
+                                <h3>On Imposter Syndrome, AI & Minimalism</h3>
+                                <blockquote>From overcoming imposter syndrome with proactive strategies to the impact of AI on creativity, the group also explored the Taoist concept of "nothingness" and its connection to modern minimalism.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/exploring-meaning-and-habits-reflections" aria-label="Read: Hong Kong - On Meaning, Habits & Generational Concerns">
+                            <div class="insight-card-content">
+                                <span>Hong Kong / August 2024</span>
+                                <h3>On Meaning, Habits & Generational Concerns</h3>
+                                <blockquote>Participants explored life as a "process of becoming" and discussed personal struggles with bad habits, while also expressing concerns about the next generation's empathy and critical thinking skills.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                     <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/from-self-doubt-to-self-awareness-navigating-group-dynamics-and-creativity" aria-label="Read: Hong Kong - On Group Dynamics & Personal Freedom">
+                            <div class="insight-card-content">
+                                <span>Hong Kong / August 2024</span>
+                                <h3>On Group Dynamics & Personal Freedom</h3>
+                                <blockquote>What conversation do you need to have to set yourself free? One participant argued that true liberation comes from reducing external influences, while another believed open conversation fosters collective freedom.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/embracing-the-unexpected-conversations-on-chronic-pain-dreaming-as-a-child-and-lifes-intricacies" aria-label="Read: Hong Kong - On Dealing with Pain & Rediscovering Dreams">
+                            <div class="insight-card-content">
+                                <span>Hong Kong / August 2024</span>
+                                <h3>On Dealing with Pain & Rediscovering Dreams</h3>
+                                <blockquote>When asked how to deal with pain, a participant shared a journey of managing chronic pain through mindfulness and acceptance, concluding, “Pain is the evidence that you are a living entity.”</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/exploring-the-existential-dimensions-of-life-a-dialogue-on-suffering-spirituality-and-the-search-of-meaning" aria-label="Read: Hong Kong - On Suffering, Spirituality & Meaning">
+                            <div class="insight-card-content">
+                                <span>Hong Kong / August 2024</span>
+                                <h3>On Suffering, Spirituality & Meaning</h3>
+                                <blockquote>How to overcome suffering? The group explored finding strength through self-compassion and acceptance, with one participant noting, “You can’t expect unconditional love from others, but you can always love yourself unconditionally.”</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/what-would-you-do-differently-a-conversation" aria-label="Read: Hong Kong - On Choices, Regrets & Hindsight">
+                            <div class="insight-card-content">
+                                <span>Hong Kong / August 2024</span>
+                                <h3>On Choices, Regrets & Hindsight</h3>
+                                <blockquote>If you could go back 10 years and make one change, what would it be? Participants reflected on embracing vulnerability, taking more risks, and the importance of making choices that align with their true selves.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="insight-card">
+                        <a href="https://curioussoulscafe.substack.com/p/curious-souls-cafe-happiness-insights" aria-label="Read: Hong Kong - On Happiness & Limiting Beliefs">
+                            <div class="insight-card-content">
+                                <span>Hong Kong / July 2024</span>
+                                <h3>On Happiness & Limiting Beliefs</h3>
+                                <blockquote>Why is sorrow more unforgettable than happiness? Participants explored how to redefine happiness by shifting focus from what we lack to appreciating what we already have.</blockquote>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+             <p><a href="/">Back to Home</a></p>
+            <p>&copy; 2025 Curious Souls Café. All Rights Reserved.</p>
+            <p><a href="mailto:hello@curioussouls.cafe">hello@curioussouls.cafe</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.getElementById('main-nav');
+            const hamburgerBtn = document.getElementById('hamburger-menu');
+            if (hamburgerBtn && nav) {
+                hamburgerBtn.addEventListener('click', () => {
+                    const isOpen = nav.classList.toggle('is-open');
+                    hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                    const icon = hamburgerBtn.querySelector('i');
+                    if (isOpen) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
