@@ -121,6 +121,29 @@
             text-align: center;
         }
         .main-footer a { color: #d1d5db; text-decoration: none; }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid transparent;
+        }
+        .btn-primary {
+            background-color: var(--bg-white);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        .btn-primary:hover { 
+            background-color: var(--primary-color); 
+            color: var(--bg-white);
+            transform: translateY(-2px); 
+        }
+        .btn-primary:focus-visible {
+            outline: 3px solid rgba(104, 64, 199, 0.3);
+            outline-offset: 2px;
+        }
 
         @media (max-width: 768px) {
             section { padding: 3rem 0; scroll-margin-top: 72px; }
@@ -282,6 +305,9 @@
                             </div>
                         </a>
                     </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="https://curioussoulscafe.substack.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Subscribe to Our Newsletter</a>
                 </div>
             </div>
         </section>
