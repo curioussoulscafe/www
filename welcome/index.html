@@ -421,23 +421,64 @@
         } catch (err) { console.warn('Share canceled or failed:', err); }
       });
   
-      // Floating Back button
+      // --- All logic runs after the DOM is loaded ---
       document.addEventListener('DOMContentLoaded', () => {
         const floatingBackButton = document.getElementById('floating-back-button');
-        if (floatingBackButton) {
-          floatingBackButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (window.history.length > 1) window.history.back(); else window.location.href = '../';
-          });
-          const hash = (window.location.hash || '').toLowerCase();
-          if (hash === '#hide-back') { floatingBackButton.style.display = 'none'; }
-          else if (hash === '#show-back') { floatingBackButton.style.display = 'inline-flex'; }
-          else { floatingBackButton.style.display = 'none'; }
-        }
-        updateShareButtonAvailability();
-        
         const nav = document.getElementById('main-nav');
         const hamburgerBtn = document.getElementById('hamburger-menu');
+
+        // Floating Back button behavior
+        if (floatingBackButton) {
+            floatingBackButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    window.location.href = '../';
+                }
+            });
+            
+            // Helper function for the attention-grabbing animation
+            function runBackButtonAttention() {
+                const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (!prefersReduced) {
+                    floatingBackButton.classList.add('attention');
+                    // Remove the class after the animation completes (900ms * 3 = 2700ms)
+                    setTimeout(() => {
+                        floatingBackButton.classList.remove('attention');
+                    }, 2700);
+                }
+            }
+            
+            // Function to show/hide the button based on the URL hash
+            function applyBackButtonHashRule() {
+                const hash = (window.location.hash || '').toLowerCase();
+                
+                // Reset inline styles first
+                floatingBackButton.style.display = '';
+
+                if (hash === '#hide-back') {
+                    floatingBackButton.style.display = 'none';
+                } else if (hash === '#show-back') {
+                    floatingBackButton.style.display = 'inline-flex';
+                    runBackButtonAttention(); // Trigger attention effect
+                } else {
+                    // Default behavior: button is not shown
+                    floatingBackButton.style.display = 'none';
+                }
+            }
+
+            // Apply the rule when the page loads
+            applyBackButtonHashRule();
+            
+            // Re-apply the rule if the hash changes
+            window.addEventListener('hashchange', applyBackButtonHashRule);
+        }
+
+        // Check if Web Share API is available
+        updateShareButtonAvailability();
+        
+        // Mobile navigation (hamburger menu)
         if (hamburgerBtn && nav) {
             hamburgerBtn.addEventListener('click', () => {
                 const isOpen = nav.classList.toggle('is-open');
