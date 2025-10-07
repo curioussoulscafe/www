@@ -368,16 +368,21 @@
       const shareLinkButton = document.getElementById('share-link-button');
       const pageDirectLink = document.getElementById('page-direct-link');
   
+      // Helper: Get the current page URL without any hash
+      function getCleanUrl() {
+        return `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
+      }
+
       // Helper: open/close modal with basic focus management
       function openModal() {
-        const pageUrl = window.location.href;
-        const qrCodeApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(pageUrl)}`;
+        const cleanUrl = getCleanUrl();
+        const qrCodeApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(cleanUrl)}`;
         qrModalImage.src = qrCodeApiUrl;
         qrCodeModal.classList.add('show');
         qrCodeModal.setAttribute('aria-hidden', 'false');
         qrModalCloseButton.focus();
-        pageDirectLink.href = pageUrl;
-        pageDirectLink.textContent = pageUrl;
+        pageDirectLink.href = cleanUrl;
+        pageDirectLink.textContent = cleanUrl;
       }
       function closeModal() {
         qrCodeModal.classList.remove('show');
@@ -394,9 +399,9 @@
       // Copy link
       copyLinkTextLink.addEventListener('click', async (e) => {
         e.preventDefault();
-        const pageUrl = window.location.href;
+        const cleanUrl = getCleanUrl();
         try {
-          await navigator.clipboard.writeText(pageUrl);
+          await navigator.clipboard.writeText(cleanUrl);
           alert('Link copied to clipboard!');
         } catch (err) {
             alert('Unable to copy link.');
@@ -413,11 +418,12 @@
       }
       shareLinkButton.addEventListener('click', async (e) => {
         e.preventDefault();
+        const cleanUrl = getCleanUrl();
         if (!navigator.share) {
-            try { await navigator.clipboard.writeText(window.location.href); alert('Sharing not supported. Link copied instead.'); } catch {} return;
+            try { await navigator.clipboard.writeText(cleanUrl); alert('Sharing not supported. Link copied instead.'); } catch {} return;
         }
         try {
-          await navigator.share({ title: document.title, text: 'Join me at Curious Souls Café!', url: window.location.href });
+          await navigator.share({ title: document.title, text: 'Join me at Curious Souls Café!', url: cleanUrl });
         } catch (err) { console.warn('Share canceled or failed:', err); }
       });
   
