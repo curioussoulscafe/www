@@ -387,7 +387,7 @@
                 <h3>File Organization</h3>
                 <ul>
                     <li><p><code>index.html</code> is the main page in the <strong>root folder</strong>.</p></li>
-                    <li><p>Topic pages (e.g., <code>icebreaker.html</code>) are in the <strong><code>/pages</code></strong> folder.</p></li>
+                    <li><p>Topic pages (e.g., <code>icebreaker/index.html</code>) are in the <strong><code>/topics</code></strong> folder.</p></li>
                     <li><p>Question sets (<code>.txt</code> files) are in the <strong><code>/questions</code></strong> folder.</p></li>
                     <li><p>Images and other data are in the <strong><code>/images</code></strong> and <strong><code>/data</code></strong> folders, respectively.</p></li>
                 </ul>
@@ -395,7 +395,7 @@
                 <h3>How to Add New Question Sets</h3>
                 <ol>
                     <li><p><strong>Add Questions File</strong>: Create a new <code>.txt</code> file in the <code>/questions</code> folder (e.g., <code>MyNewTopic.txt</code>). Add one question per line.</p></li>
-                    <li><p><strong>Create HTML Page</strong>: Duplicate an existing topic page (e.g., <code>icebreaker.html</code>) in the <code>/pages</code> folder and rename it (e.g., <code>mynewtopic.html</code>). Update the file's content to reference your new topic and <code>.txt</code> file.</p></li>
+                    <li><p><strong>Create HTML Page</strong>: Duplicate an existing topic folder (e.g., <code>icebreaker/index.html</code>) in the <code>/topics</code> folder and rename it (e.g., <code>mynewtopic/index.html</code>). Update the file's content to reference your new topic and <code>.txt</code> file.</p></li>
                     <li><p><strong>Register the Deck</strong>: In <code>index.html</code>, find the <code>TOPIC_CONFIGS</code> array and add a new object for your topic, specifying its <code>name</code>, <code>htmlFileName</code>, and <code>txtUrl</code>.</p></li>
                     <li><p><strong>Update the Service Worker</strong>: Add the file paths for your new <code>.txt</code> and <code>.html</code> files to the <code>FILES_TO_CACHE</code> array in <code>service-worker.js</code>. This ensures the new content can be cached.</p></li>
                 </ol>
