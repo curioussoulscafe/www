@@ -242,10 +242,10 @@
 
         /* --- Tools Section --- */
         .tools-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 2rem;
-            align-items: center;
         }
         .tool-card {
             background: var(--bg-white);
@@ -254,6 +254,8 @@
             text-align: center;
             box-shadow: 0 8px 16px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
+            flex: 1 1 400px; /* Let it grow and shrink, with a basis to fit ~2 per row */
+            max-width: 480px; /* Prevent cards from becoming too wide */
         }
         .tool-card .icon { font-size: 3rem; color: var(--secondary-color); margin-bottom: 1.5rem; }
         .tool-card h3 { font-size: 1.75rem; }
@@ -395,7 +397,7 @@
             .hero h1 { font-size: 2.25rem; }
             .hero p { font-size: 1.125rem; }
             section { padding: 3rem 0; scroll-margin-top: 72px; }
-            .tools-grid, .workplace-content { grid-template-columns: 1fr; }
+            .workplace-content { grid-template-columns: 1fr; }
             .workplace-icon { font-size: 6rem; margin-bottom: 2rem; }
 
             /* Mobile timeline layout */
@@ -596,6 +598,14 @@
                         <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
                            <a href="https://app.curioussouls.cafe/dice/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Roll the Dice</a>
                            <a href="./dice/" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                        </div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Action Prompts</h3>
+                        <p>Spark gratitude, kindness, and inspiration with creative tasks. A perfect companion to the dice roller!</p>
+                        <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+                           <a href="action-prompts.html" class="btn btn-primary">Try the Prompts</a>
                         </div>
                     </div>
                 </div>
@@ -822,3 +832,4 @@
     </script>
 </body>
 </html>
+
