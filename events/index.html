@@ -448,7 +448,7 @@
         <section class="content-section">
             <div class="content-body">
 
-                <div class="info-box">
+                <div id="info-box" class="info-box">
                     <div class="flex items-start gap-4">
                         <i class="fas fa-info-circle text-2xl text-indigo-500 mt-1"></i>
                         <div>
@@ -1196,6 +1196,26 @@
         document.addEventListener('DOMContentLoaded', () => {
             const backToTopButton = document.getElementById('back-to-top');
             const event96Link = document.getElementById('event-96-link');
+            const infoBox = document.getElementById('info-box');
+
+            // --- New logic for info-box visibility ---
+            function applyInfoBoxHashRule() {
+                if (!infoBox) return;
+                const hash = (window.location.hash || '').toLowerCase();
+
+                // Default behavior: hide the info-box
+                // Show it only if the hash is #show-info
+                if (hash === '#show-info') {
+                    infoBox.style.display = 'block';
+                } else {
+                    infoBox.style.display = 'none';
+                }
+            }
+            // Apply the rule when the page loads
+            applyInfoBoxHashRule();
+            // Re-apply the rule if the hash changes
+            window.addEventListener('hashchange', applyInfoBoxHashRule);
+            // --- End of new logic ---
 
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 100) {

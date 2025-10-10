@@ -342,7 +342,7 @@
                 <p>At Curious Souls Café, our events bring people together for structured, meaningful conversations. A key part of our format involves multiple rounds of discussion where participants explore various topics. To kick off a discussion in a fair and engaging way, we use a few fun methods, one of which is rolling the colored dice.</p>
                 <p>To enhance bonding, participants are sometimes grouped into teams (e.g., 2-3 participants per team) associated with one of three colors: blue, yellow, or red. The dice roll then determines which team starts the conversation.</p>
 
-                <div class="info-box">
+                <div id="info-box" class="info-box">
                     <i class="fas fa-info-circle"></i>
                     <div>
                         <p class="info-box-title">How does this fit into an event?</p>
@@ -434,6 +434,22 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const floatingBackButton = document.getElementById('floating-back-button');
+        const infoBox = document.getElementById('info-box');
+
+        // --- New logic for info-box visibility ---
+        function applyInfoBoxHashRule() {
+            if (!infoBox) return;
+            const hash = (window.location.hash || '').toLowerCase();
+            // Show the info-box only if the hash is #show-info
+            if (hash === '#show-info') {
+                infoBox.style.display = 'flex';
+            } else {
+                infoBox.style.display = 'none';
+            }
+        }
+        applyInfoBoxHashRule();
+        window.addEventListener('hashchange', applyInfoBoxHashRule);
+        // --- End of new logic ---
 
         // Fallback path if browser history is not available.
         const HOME_FALLBACK = '/'; 
