@@ -334,7 +334,8 @@
                 <p>Curious Souls Café is a "third place" away from home and work, founded to counter the isolation of modern life. It's a global community that hosts events where people can explore life's big questions together. Our philosophy is centered on the power of face-to-face conversations to build deeper bonds in a safe, non-judgmental environment. This web app was originally created to support our in-person and online events.</p>
                 <p>To learn more about the initiative, check out our <a href="https://curioussouls.cafe/">main website</a>.</p>
 
-                <div class="note-box"><p><strong>Pro Tip:</strong>
+                <div id="info-box" class="note-box">
+                    <p><strong>Pro Tip:</strong>
                     <br>- For an overview of our meetup, check out the <a href="https://curioussouls.cafe/about">About</a> page of our official website (recommended). For a deeper understanding of how our events are structured, including different conversation styles and facilitation tips, check out our <a href="../how-it-works/">Event Structure Guide</a>.
                     <br>- Curious about how our past events went? Explore our <a href="https://curioussouls.cafe/insights">Event Insights</a> for anonymous highlights from our meetups.</p>
                 </div>
@@ -484,6 +485,24 @@
         // --- End of Back Button Utilities ---
 
         document.addEventListener('DOMContentLoaded', () => {
+            const infoBox = document.getElementById('info-box');
+
+            // --- New logic for info-box visibility ---
+            function applyInfoBoxHashRule() {
+                if (!infoBox) return;
+                const hash = (window.location.hash || '').toLowerCase();
+
+                // Default behavior: show the info-box. Hide it only if the hash is #hide-info.
+                if (hash === '#hide-info') {
+                    infoBox.style.display = 'none';
+                } else {
+                    infoBox.style.display = 'block';
+                }
+            }
+            applyInfoBoxHashRule();
+            window.addEventListener('hashchange', applyInfoBoxHashRule);
+            // --- End of new logic ---
+
             // Hamburger Menu Logic
             const nav = document.getElementById('main-nav');
             const hamburgerBtn = document.getElementById('hamburger-menu');
