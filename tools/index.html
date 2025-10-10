@@ -487,16 +487,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             const infoBox = document.getElementById('info-box');
 
-            // --- New logic for info-box visibility ---
+            // --- Logic for info-box visibility ---
             function applyInfoBoxHashRule() {
                 if (!infoBox) return;
                 const hash = (window.location.hash || '').toLowerCase();
 
-                // Default behavior: show the info-box. Hide it only if the hash is #hide-info.
-                if (hash === '#hide-info') {
-                    infoBox.style.display = 'none';
-                } else {
+                // Default behavior: hide the info-box. Show it only if the hash is #show-info.
+                if (hash === '#show-info') {
                     infoBox.style.display = 'block';
+                } else {
+                    infoBox.style.display = 'none';
                 }
             }
             applyInfoBoxHashRule();
