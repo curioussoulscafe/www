@@ -95,7 +95,6 @@
         
         /* --- Main Content --- */
         .content-section {
-            /* MODIFIED: Added 1.5rem horizontal padding for mobile */
             padding: 3rem 1.5rem;
             background-color: var(--bg-white);
         }
@@ -228,7 +227,7 @@
             font-weight: 600;
         }
 
-        /* --- ADDED: Quick Navigation Box --- */
+        /* --- Quick Navigation Box --- */
         .quick-nav-box {
             background-color: #f3f4f6;
             border: 1px solid var(--border-color);
@@ -258,27 +257,36 @@
             text-decoration: underline;
         }
 
-        /* --- ADDED: Call-to-Action Button Styles --- */
-        .cta-button {
+        /* --- MODIFIED: Button Styles to match about.html --- */
+        .btn {
             display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
             padding: 0.75rem 1.5rem;
             border-radius: 9999px;
-            text-decoration: none;
             font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid transparent;
             margin: 1.5rem 0;
             text-align: center;
-            transition: background-color 0.2s, transform 0.2s;
         }
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-            color: white;
+        .btn-primary {
+            background-color: var(--bg-white);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        .btn-primary:hover { 
+            background-color: var(--primary-color); 
+            color: var(--bg-white);
+            transform: translateY(-2px); 
             text-decoration: none;
         }
-        .cta-button .icon { margin-right: 0.5rem; }
-
+        .btn-primary:focus-visible {
+            outline: 3px solid rgba(104, 64, 199, 0.3);
+            outline-offset: 2px;
+        }
+        .btn .icon { 
+            margin-right: 0.5rem; 
+        }
 
         /* --- Footer --- */
         .main-footer {
@@ -287,7 +295,7 @@
             padding: 3rem 0;
             text-align: center;
         }
-                .footer-links a {
+        .footer-links a {
             color: #d1d5db;
             text-decoration: none;
             margin: 0 1rem;
@@ -339,7 +347,6 @@
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
-            /* MODIFIED: Added horizontal padding to hero on mobile */
             .hero { padding-left: 1.5rem; padding-right: 1.5rem; }
             .hamburger-menu { display: block; }
             .main-nav {
@@ -410,7 +417,7 @@
                     <ul>
                         <li><a href="#how-to-use-the-virtual-dice-roller" data-scroll>Jump to the Virtual Dice Roller Guide</a></li>
                     </ul>
-                    <a href="https://app.curioussouls.cafe/dice/" target="_blank" class="cta-button">
+                    <a href="https://app.curioussouls.cafe/dice/" target="_blank" class="btn btn-primary">
                         <i class="fas fa-dice icon"></i> Launch Virtual Dice Roller
                     </a>
                 </div>
@@ -447,7 +454,7 @@
                 <h2>A Twist: The Striped Dice and Meaningful 'Punishment'</h2>
                 <p>If a team rolls the dice and it shows stripes, they need to draw a "punishment" card and work on a meaningful action together before discussing the next question. These cards facilitate bonding by encouraging actions like: “Write down one thing you want to manifest this year and date it. Compare.”</p>
                 <figure>
-                    <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc72d1388-31ff-4a07-b3a7-f3b8e89212e6_1912x1434.jpeg" alt="A striped dice next to a punishment card with a meaningful action prompt.">
+                    <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc72d1388-31ff-4a07-b3a7-f3b8e899212e6_1912x1434.jpeg" alt="A striped dice next to a punishment card with a meaningful action prompt.">
                     <figcaption class="img-caption">A striped dice for our game variation (left) and a "punishment" card that inspires a meaningful action (right).</figcaption>
                 </figure>
                 <div class="note-box"><p><strong>Note:</strong> Using the striped dice for meaningful actions is entirely optional. Feel free to skip directly to the discussion once a color is revealed.</p></div>
@@ -455,7 +462,7 @@
 
                 <h2 id="how-to-use-the-virtual-dice-roller">How to Use the Virtual Dice Roller</h2>
                 
-                <a href="https://app.curioussouls.cafe/dice/" target="_blank" class="cta-button">
+                <a href="https://app.curioussouls.cafe/dice/" target="_blank" class="btn btn-primary">
                     <i class="fas fa-dice icon"></i> Launch the Dice Roller App
                 </a>
                 
@@ -484,7 +491,7 @@
                     <figcaption class="img-caption">The Action Prompt page shown after choosing “Punishment.”</figcaption>
                 </figure>
 
-                <a href="https://app.curioussouls.cafe/dice/" target="_blank" class="cta-button">
+                <a href="https://app.curioussouls.cafe/dice/" target="_blank" class="btn btn-primary">
                     <i class="fas fa-external-link-alt icon"></i> Try the Virtual Dice Roller
                 </a>
 
