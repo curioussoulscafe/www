@@ -1225,11 +1225,11 @@
                 const hash = (window.location.hash || '').toLowerCase();
 
                 // Default behavior: hide the info-box
-                // Show it only if the hash is #show-info
-                if (hash === '#show-info') {
-                    infoBox.style.display = 'block';
-                } else {
+                // Hide it only if the hash is #hide-info
+                if (hash === '#hide-info') {
                     infoBox.style.display = 'none';
+                } else {
+                    infoBox.style.display = 'block';
                 }
             }
             // Apply the rule when the page loads
