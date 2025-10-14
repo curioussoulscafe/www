@@ -225,13 +225,15 @@
             transition: all 0.2s ease-in-out;
             border: 1px solid transparent;
         }
-        /* MODIFIED: Aligned button styles with index.html */
+        /* MODIFIED: Changed to outlined button style */
         .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--bg-white);
+            background-color: var(--bg-white);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
         }
         .btn-primary:hover { 
-            background-color: #5b21b6; 
+            background-color: var(--primary-color); 
+            color: var(--bg-white);
             transform: translateY(-2px);
             text-decoration: none;
         }
@@ -409,7 +411,7 @@
                         <p>Access collections of curated questions designed to guide soul-searching discussions on diverse themes.</p>
                         <div class="tool-card-actions">
                            <a href="https://app.curioussouls.cafe/" target="_blank" class="btn btn-primary">Launch App</a>
-                           <a href="#-the-question-decks" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                           <a href="#-getting-started" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
                         </div>
                     </div>
                     <div class="tool-card">
@@ -417,7 +419,7 @@
                         <p>A fun tool to decide who starts, break ties, or engage in meaningful "punishment" bonding actions.</p>
                         <div class="tool-card-actions">
                            <a href="https://app.curioussouls.cafe/dice" target="_blank" class="btn btn-primary">Roll the Dice</a>
-                           <a href="#app-features-amp-tools" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                           <a href="../dice/" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
                         </div>
                     </div>
                     <div class="tool-card">
@@ -425,7 +427,6 @@
                         <p>Spark gratitude, kindness, and inspiration with randomly presented creative and meaningful tasks.</p>
                         <div class="tool-card-actions">
                            <a href="https://app.curioussouls.cafe/action-prompts" target="_blank" class="btn btn-primary">Try the Prompts</a>
-                           <a href="#app-features-amp-tools" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
                         </div>
                     </div>
                 </div>
@@ -663,3 +664,4 @@
     </script>
 </body>
 </html>
+
