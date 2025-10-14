@@ -225,20 +225,27 @@
             transition: all 0.2s ease-in-out;
             border: 1px solid transparent;
         }
+        /* MODIFIED: Aligned button styles with index.html */
         .btn-primary {
-            background-color: var(--bg-white);
-            color: var(--primary-color);
-            border-color: var(--primary-color);
+            background-color: var(--primary-color);
+            color: var(--bg-white);
         }
         .btn-primary:hover { 
-            background-color: var(--primary-color); 
-            color: var(--bg-white);
-            transform: translateY(-2px); 
+            background-color: #5b21b6; 
+            transform: translateY(-2px);
             text-decoration: none;
         }
-        .btn-primary .icon {
-            margin-right: 0.5rem;
+        .btn-secondary {
+            background-color: var(--bg-white);
+            color: var(--primary-color);
+            border-color: var(--border-color);
         }
+        .btn-secondary:hover { 
+            background-color: var(--bg-light); 
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
         /* MODIFIED: Updated tool card layout styles */
         .tool-cards-container {
             display: flex;
@@ -273,9 +280,12 @@
             flex-grow: 1; /* Makes description take up available space */
             margin-bottom: 1.5rem;
         }
-        .tool-card .btn {
-            margin-top: auto; /* Pushes button to the bottom */
-            margin-bottom: 0;
+        .tool-card-actions {
+            margin-top: auto; /* Pushes buttons to the bottom */
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
         }
 
         /* --- Footer --- */
@@ -395,19 +405,28 @@
                 
                 <div class="tool-cards-container">
                     <div class="tool-card">
-                        <h3><i class="fas fa-comments icon"></i> Question Decks</h3>
+                        <h3><i class="fas fa-comments icon"></i> Virtual Question Decks</h3>
                         <p>Access collections of curated questions designed to guide soul-searching discussions on diverse themes.</p>
-                        <a href="https://app.curioussouls.cafe/" target="_blank" class="btn btn-primary">Launch App</a>
+                        <div class="tool-card-actions">
+                           <a href="https://app.curioussouls.cafe/" target="_blank" class="btn btn-primary">Launch App</a>
+                           <a href="#-the-question-decks" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                        </div>
                     </div>
                     <div class="tool-card">
-                        <h3><i class="fas fa-dice icon"></i> Virtual Dice Roller</h3>
+                        <h3><i class="fas fa-dice icon"></i> The Virtual Dice Roller</h3>
                         <p>A fun tool to decide who starts, break ties, or engage in meaningful "punishment" bonding actions.</p>
-                        <a href="https://app.curioussouls.cafe/dice" target="_blank" class="btn btn-primary">Roll the Dice</a>
+                        <div class="tool-card-actions">
+                           <a href="https://app.curioussouls.cafe/dice" target="_blank" class="btn btn-primary">Roll the Dice</a>
+                           <a href="#app-features-amp-tools" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                        </div>
                     </div>
                     <div class="tool-card">
                         <h3><i class="fas fa-lightbulb icon"></i> Action Prompts</h3>
                         <p>Spark gratitude, kindness, and inspiration with randomly presented creative and meaningful tasks.</p>
-                        <a href="https://app.curioussouls.cafe/action-prompts" target="_blank" class="btn btn-primary">Try the Prompts</a>
+                        <div class="tool-card-actions">
+                           <a href="https://app.curioussouls.cafe/action-prompts" target="_blank" class="btn btn-primary">Try the Prompts</a>
+                           <a href="#app-features-amp-tools" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                        </div>
                     </div>
                 </div>
 
