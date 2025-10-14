@@ -215,7 +215,7 @@
             border-radius: 0 0.5rem 0.5rem 0;
         }
 
-        /* --- ADDED: Button and Tool Card Styles --- */
+        /* --- Button and Tool Card Styles --- */
         .btn {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -239,18 +239,21 @@
         .btn-primary .icon {
             margin-right: 0.5rem;
         }
+        /* MODIFIED: Updated tool card layout styles */
         .tool-cards-container {
             display: flex;
             flex-wrap: wrap;
             gap: 1.5rem;
             margin: 2rem 0;
+            justify-content: center; /* Center cards horizontally */
         }
         .tool-card {
             background-color: var(--bg-light);
             border: 1px solid var(--border-color);
             border-radius: 0.75rem;
             padding: 1.5rem;
-            flex: 1 1 250px; /* Flex-grow, flex-shrink, flex-basis */
+            flex: 1 1 250px; /* Grow and shrink from a 250px basis */
+            max-width: 350px; /* Prevent cards from becoming too wide */
             display: flex;
             flex-direction: column;
             transition: transform 0.2s, box-shadow 0.2s;
