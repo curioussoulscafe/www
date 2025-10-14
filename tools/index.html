@@ -161,6 +161,9 @@
         .content-body ul, .content-body ol {
             padding-left: 25px;
         }
+        .content-body ul {
+            list-style: none; /* Remove default bullets for custom icons */
+        }
         .content-body ul li {
             position: relative;
             padding-left: 10px;
@@ -212,6 +215,66 @@
             border-radius: 0 0.5rem 0.5rem 0;
         }
 
+        /* --- ADDED: Button and Tool Card Styles --- */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid transparent;
+        }
+        .btn-primary {
+            background-color: var(--bg-white);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        .btn-primary:hover { 
+            background-color: var(--primary-color); 
+            color: var(--bg-white);
+            transform: translateY(-2px); 
+            text-decoration: none;
+        }
+        .btn-primary .icon {
+            margin-right: 0.5rem;
+        }
+        .tool-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .tool-card {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            flex: 1 1 250px; /* Flex-grow, flex-shrink, flex-basis */
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+        }
+        .tool-card h3 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+        .tool-card h3 .icon { color: var(--primary-color); margin-right: 0.6rem; }
+        .tool-card p {
+            flex-grow: 1; /* Makes description take up available space */
+            margin-bottom: 1.5rem;
+        }
+        .tool-card .btn {
+            margin-top: auto; /* Pushes button to the bottom */
+            margin-bottom: 0;
+        }
+
         /* --- Footer --- */
         .main-footer {
             background-color: var(--text-dark);
@@ -239,7 +302,6 @@
             background-color: #43c6a6; color: white; border: none; padding: .65rem .9rem; border-radius: 9999px;
             box-shadow: 0 8px 16px rgba(0,0,0,.15); display: inline-flex; align-items: center; gap: .5rem; font-weight: 600;
             transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, opacity .2s ease; opacity: .95;
-            /* Attention effect variables */
             --pulse-from: #43c6a6;
             --pulse-to: #6b7280;
             --glow-color: rgba(99,102,241,0.55);
@@ -253,12 +315,12 @@
             100% { transform: translateY(0) scale(1);   background-color: var(--pulse-from); box-shadow: 0 0 0 rgba(0,0,0,0), 0 8px 16px rgba(0,0,0,.15); }
         }
         .floating-back-btn.attention {
-            animation: backBtnPulse 900ms ease-in-out 0s 3; /* ~2.7s total */
+            animation: backBtnPulse 900ms ease-in-out 0s 3;
         }
         
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
-            code, kbd, samp { font-size: 0.9rem; } /* slight scale-down for narrow screens */
+            code, kbd, samp { font-size: 0.9rem; }
             .hamburger-menu { display: block; }
             .main-nav {
                 position: fixed; top: 0; right: 0; width: 280px; height: 100%;
@@ -327,11 +389,24 @@
 
                 <h2 id="-key-features">✨ Key Tools</h2>
                 <p>The Curious Souls Café web app is built around a few core components designed to facilitate connection and conversation.</p>
-                <ul>
-                    <li><p><strong>Question Decks</strong>: Access our <a href="https://app.curioussouls.cafe/" target="_blank">Question Decks</a>, a collection of curated questions designed to guide soul-searching discussions. These decks cover diverse themes and are often co-developed with the global community.</p></li>
-                    <li><p><strong>The Dice Roller</strong>: Access the <a href="https://app.curioussouls.cafe/dice" target="_blank">Virtual Dice Roller</a> (or read its <a href="https://curioussouls.cafe/dice/">docs</a>) via the floating dice icon on any page. This is a fun tool used to decide who starts, break ties, or engage in meaningful punishment.</p></li>
-                    <li><p><strong>Actions Prompts</strong>: Access meaningful <a href="https://app.curioussouls.cafe/action-prompts" target="_blank">Action Prompts</a> to spark gratitude, kindness, and inspiration with randomly presented creative tasks.</p></li>
-                </ul>
+                
+                <div class="tool-cards-container">
+                    <div class="tool-card">
+                        <h3><i class="fas fa-comments icon"></i> Question Decks</h3>
+                        <p>Access collections of curated questions designed to guide soul-searching discussions on diverse themes.</p>
+                        <a href="https://app.curioussouls.cafe/" target="_blank" class="btn btn-primary">Launch Decks</a>
+                    </div>
+                    <div class="tool-card">
+                        <h3><i class="fas fa-dice icon"></i> Virtual Dice Roller</h3>
+                        <p>A fun tool to decide who starts, break ties, or engage in meaningful "punishment" bonding actions.</p>
+                        <a href="https://app.curioussouls.cafe/dice" target="_blank" class="btn btn-primary">Launch Dice</a>
+                    </div>
+                    <div class="tool-card">
+                        <h3><i class="fas fa-lightbulb icon"></i> Action Prompts</h3>
+                        <p>Spark gratitude, kindness, and inspiration with randomly presented creative and meaningful tasks.</p>
+                        <a href="https://app.curioussouls.cafe/action-prompts" target="_blank" class="btn btn-primary">Launch Prompts</a>
+                    </div>
+                </div>
 
                 <h2 id="-getting-started">🚀 Getting Started</h2>
                 <p>Step into meaningful conversations with ease! Here's how to use the app:</p>
@@ -381,6 +456,9 @@
 
                 <h2 id="-app-features-amp-tools">✨ App Features & Tools</h2>
                 <ul>
+                    <li><p><strong>Question Decks</strong>: Browse and select from dozens of themed question decks to guide your conversations.</p></li>
+                    <li><p><strong>Virtual Dice Roller</strong>: Use the floating dice icon to randomly select a color-coded team to start the discussion.</p></li>
+                    <li><p><strong>Action Prompts</strong>: Engage in meaningful bonding actions, often used with the dice roller's "punishment" feature.</p></li>
                     <li><p><strong>Get Random Questions</strong>: Select the number of questions to display from any deck.</p></li>
                     <li><p><strong>Save Questions</strong>: Tap any question to add it to a "Saved Questions" list for easy reference during a discussion.</p></li>
                     <li><p><strong>Search and Filter</strong>: Use the search bar on the main page to find topics, or within a topic page to find specific questions.</p></li>
