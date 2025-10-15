@@ -250,18 +250,92 @@
             padding: 3rem 0;
             text-align: center;
         }
-                .footer-links a {
+        .footer-socials { margin-bottom: 1.5rem; }
+        .footer-socials a {
+            color: #d1d5db;
+            font-size: 1.5rem;
+            margin: 0 0.75rem;
+            transition: color 0.2s;
+        }
+        .footer-socials a:hover { color: var(--secondary-color); }
+        .footer-links a {
             color: #d1d5db;
             text-decoration: none;
             margin: 0 1rem;
             font-weight: 500;
         }
-        .footer-links a:hover {
+        .footer-links a:hover { text-decoration: underline; }
+        .footer-copyright { margin-top: 1.5rem; font-size: 0.875rem; }
+
+        /* --- Improved Footer Styles --- */
+        .main-footer {
+            padding: 3rem 0 2rem; /* Adjusted padding */
+        }
+
+        .footer-top {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--bg-white);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .footer-links {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem; /* Row and column gap */
+        }
+
+        .footer-contact-links {
+            margin-bottom: 1.5rem;
+            color: #9ca3af; /* A slightly dimmer color for the separator */
+        }
+        .footer-contact-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 0 0.5rem;
+        }
+        .footer-contact-links a:hover {
             text-decoration: underline;
         }
-        .footer-copyright {
-            margin-top: 1.5rem;
-            font-size: 0.875rem;
+
+        /* Make your existing .footer-socials styles work with the new structure */
+        .footer-socials {
+            margin-bottom: 0; /* Override existing margin */
+        }
+
+        /* Keep your original styles for socials, links, and copyright */
+        .footer-socials a { color: #d1d5db; font-size: 1.5rem; margin: 0 0.75rem; transition: color 0.2s; }
+        .footer-socials a:hover { color: var(--secondary-color); }
+        .footer-copyright { margin-top: 1.5rem; font-size: 0.875rem; color: #9ca3af; }
+
+        /* Responsive adjustment for the footer top section */
+        @media (min-width: 768px) {
+            .footer-top {
+            flex-direction: row;
+            justify-content: center; /* was space-between /
+            gap: 1.5rem; / add a gap if you re-enable the logo later */
+            }
         }
 
         /* --- Responsive --- */
@@ -467,11 +541,20 @@
 
 <footer class="main-footer">
     <div class="container">
-        <div class="footer-links">
-            <a href="../">Home</a>
-            <a href="mailto:hello@curioussouls.cafe">Email</a>
-            <a href="https://curioussoulscafe.github.io/links/share-feedback" target="_blank" rel="noopener noreferrer">Feedback</a>
+        <div class="footer-top">
+            <div class="footer-socials">
+                <a href="../" aria-label="Home"><i class="fa-solid fa-house"></i></a>
+                <a href="https://curioussouls.cafe/#events" aria-label="Meetup"><i class="fab fa-meetup"></i></a>
+                <a href="https://curioussoulscafe.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="Substack"><i class="fas fa-rss"></i></a>
+            </div>
         </div>
+
+        <div class="footer-contact-links">
+             <a href="mailto:hello@curioussouls.cafe">Email Us</a>
+             <span>&bull;</span>
+             <a href="https://curioussoulscafe.github.io/links/share-feedback" target="_blank" rel="noopener noreferrer">Share Feedback</a>
+        </div>
+
         <p class="footer-copyright">&copy; 2024-2025 Curious Souls Café</p>
     </div>
 </footer>
