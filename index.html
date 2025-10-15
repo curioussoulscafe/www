@@ -59,7 +59,6 @@
         }
         .main-nav a:hover { color: var(--primary-color); }
         
-        /* IMPROVEMENT: Hamburger Menu Button */
         .hamburger-menu {
             display: none; /* Hidden on desktop */
             font-size: 1.5rem;
@@ -88,6 +87,8 @@
             margin: 0 auto 2rem auto;
         }
         .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+        /* Updated Button Styles from insights.html */
         .btn {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -96,19 +97,41 @@
             text-decoration: none;
             transition: all 0.2s ease-in-out;
             border: 1px solid transparent;
+            cursor: pointer;
+            font-size: 0.95rem;
         }
         .btn-primary {
             background-color: var(--primary-color);
             color: var(--bg-white);
         }
-        .btn-primary:hover { background-color: #5b21b6; transform: translateY(-2px); }
+        .btn-primary:hover { 
+            background-color: #5b21b6; 
+            transform: translateY(-2px); 
+        }
+        .btn-primary:focus-visible {
+            outline: 3px solid rgba(104, 64, 199, 0.3);
+            outline-offset: 2px;
+        }
         .btn-secondary {
             background-color: var(--bg-white);
             color: var(--primary-color);
             border-color: var(--border-color);
         }
-        .btn-secondary:hover { background-color: var(--bg-light); transform: translateY(-2px); }
-
+        .btn-secondary:hover {
+            background-color: var(--bg-light);
+            transform: translateY(-2px);
+        }
+        .btn-tertiary {
+            background-color: transparent;
+            color: var(--text-light);
+            border-color: var(--border-color);
+        }
+        .btn-tertiary:hover {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        /* End Updated Button Styles */
+        
         /* --- Sections --- */
         section { 
             padding: 4rem 0; 
@@ -254,8 +277,8 @@
             text-align: center;
             box-shadow: 0 8px 16px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
-            flex: 1 1 400px; /* Let it grow and shrink, with a basis to fit ~2 per row */
-            max-width: 480px; /* Prevent cards from becoming too wide */
+            flex: 1 1 400px;
+            max-width: 480px;
         }
         .tool-card .icon { font-size: 3rem; color: var(--secondary-color); margin-bottom: 1.5rem; }
         .tool-card h3 { font-size: 1.75rem; }
@@ -281,6 +304,7 @@
             text-decoration: none;
             display: block;
             height: 100%;
+            cursor: pointer;
         }
         .insight-card-content { padding: 1.5rem; }
         .insight-card-content span {
@@ -395,6 +419,58 @@
         .faq-answer a { color: var(--primary-color); text-decoration: none; font-weight: 600; }
         .faq-answer a:hover { text-decoration: underline; }
 
+        /* Modal Styles from insights.html */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
+        }
+        .modal-overlay.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0s;
+        }
+        .modal-content {
+            background-color: var(--bg-white);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.is-visible .modal-content {
+            transform: scale(1);
+        }
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+        .modal-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        /* End Modal Styles */
+
         /* --- Responsive --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.25rem; }
@@ -403,7 +479,6 @@
             .workplace-content { grid-template-columns: 1fr; }
             .workplace-icon { font-size: 6rem; margin-bottom: 2rem; }
 
-            /* Mobile timeline layout */
             .timeline::after { left: 10px; transform: none; width: 3px; opacity: 0.3; }
             .timeline-item { width: 100%; padding-left: 40px; padding-right: 0; }
             .timeline-item.left, .timeline-item.right { left: 0%; }
@@ -414,41 +489,24 @@
                 border-color: transparent white transparent transparent;
             }
 
-            /* IMPROVEMENT: Mobile Navigation Styling */
             .hamburger-menu {
-                display: block; /* Show hamburger on mobile */
+                display: block;
             }
-
             .main-nav {
-                position: fixed;
-                top: 0;
-                right: 0;
-                width: 280px;
-                height: 100%;
-                background-color: var(--bg-white);
-                z-index: 1000;
-                display: flex;
-                flex-direction: column;
-                padding: 5rem 0 2rem;
+                position: fixed; top: 0; right: 0; width: 280px; height: 100%;
+                background-color: var(--bg-white); z-index: 1000; display: flex;
+                flex-direction: column; padding: 5rem 0 2rem;
                 box-shadow: -5px 0 15px rgba(0,0,0,0.1);
                 transform: translateX(100%);
                 transition: transform 0.3s ease-in-out;
             }
-
-            .main-nav.is-open {
-                transform: translateX(0);
-            }
-            
+            .main-nav.is-open { transform: translateX(0); }
             .main-nav a {
-                margin: 0;
-                padding: 1rem 2rem;
-                font-size: 1.1rem;
-                color: var(--text-dark);
-                border-bottom: 1px solid var(--border-color);
+                margin: 0; padding: 1rem 2rem; font-size: 1.1rem;
+                color: var(--text-dark); border-bottom: 1px solid var(--border-color);
             }
             .main-nav a:hover {
-                background-color: var(--bg-light);
-                color: var(--primary-color);
+                background-color: var(--bg-light); color: var(--primary-color);
             }
         }
     </style>
@@ -541,18 +599,11 @@
                     </div>
                 </div>
                 <div class="about-actions">
-                    <a href="./about/" class="btn btn-secondary" style="margin-right:0.65rem;">
+                    <a href="./about/" class="btn btn-tertiary" style="margin-right:0.65rem;">
                         <i class="fas fa-info-circle" style="margin-right:0.35rem;"></i>
                         Learn More
                     </a>
-                    <!-- <a href="./welcome/" class="btn btn-secondary" style="margin-right:0.65rem;">
-                        <i class="fas fa-book-open" style="margin-right:0.35rem;"></i>
-                        Welcome Leaflet
-                    </a> -->
                 </div>
-                 <!-- <div style="text-align: center; margin-top: 2rem;">
-                    <a href="./how-it-works/" class="btn btn-secondary">View Detailed Event Structure</a>
-                </div> -->
             </div>
         </section>
 
@@ -572,7 +623,7 @@
                         <a class="location-pill" href="https://www.meetup.com/curious-souls-cafe-osaka/" target="_blank" rel="noopener noreferrer">Osaka</a>
                         <a class="location-pill" href="https://www.meetup.com/curious-souls-cafe/" target="_blank" rel="noopener noreferrer">and beyond...</a>
                     </div>
-                    <p>As of September 2025, we have hosted more than 100 sessions in Asia.</p>
+                    <p>As of October 2025, we have hosted more than 100 sessions in Asia.</p>
                     <a href="./events/" class="btn btn-primary">View All Events</a>
                 </div>
             </div>
@@ -591,7 +642,7 @@
                         <p>Access dozens of question decks on topics like Happiness, Friendship, and Inner Child to spark conversations anytime, anywhere.</p>
                         <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
                            <a href="https://app.curioussouls.cafe/" target="_blank" class="btn btn-primary">Launch App</a>
-                           <a href="./tools/" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                           <a href="./tools/" class="btn btn-tertiary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
                         </div>
                     </div>
                     <div class="tool-card">
@@ -600,7 +651,7 @@
                         <p>Add a playful twist to your talks! Use our virtual dice to decide who starts, break a tie, or engage in meaningful "punishments" (action prompts).</p>
                         <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
                            <a href="https://app.curioussouls.cafe/dice/" target="_blank" class="btn btn-primary">Roll the Dice</a>
-                           <a href="./dice/" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
+                           <a href="./dice/" class="btn btn-tertiary"><i class="fas fa-book-open" style="margin-right: 0.35rem;"></i>Read Docs</a>
                         </div>
                     </div>
                     <div class="tool-card">
@@ -623,7 +674,7 @@
                 </div>
                 <div class="insights-grid">
                     <div class="insight-card">
-                        <a href="https://curioussoulscafe.substack.com/p/curious-souls-cafe-happiness-insights" target="_blank" rel="noopener noreferrer" aria-label="Read: Hong Kong - On Happiness & Limiting Beliefs">
+                        <a href="https://curioussoulscafe.substack.com/p/curious-souls-cafe-happiness-insights" aria-label="Read: Hong Kong - On Happiness & Limiting Beliefs">
                             <div class="insight-card-content">
                                 <span>Hong Kong / July 2024</span>
                                 <h3>On Happiness & Limiting Beliefs</h3>
@@ -632,7 +683,7 @@
                         </a>
                     </div>
                     <div class="insight-card">
-                        <a href="https://curioussoulscafe.substack.com/p/on-crafting-a-legacy-conversations-with-curious-souls-in-singapore" target="_blank" rel="noopener noreferrer" aria-label="Read: Singapore - On Crafting a Legacy">
+                        <a href="https://curioussoulscafe.substack.com/p/on-crafting-a-legacy-conversations-with-curious-souls-in-singapore" aria-label="Read: Singapore - On Crafting a Legacy">
                             <div class="insight-card-content">
                                 <span>Singapore / January 2025</span>
                                 <h3>On Crafting a Legacy</h3>
@@ -641,7 +692,7 @@
                         </a>
                     </div>
                     <div class="insight-card">
-                        <a href="https://curioussoulscafe.substack.com/p/on-addiction-and-happiest-memories" target="_blank" rel="noopener noreferrer" aria-label="Read: Taipei - On Addiction & Simple Pleasures">
+                        <a href="https://curioussoulscafe.substack.com/p/on-addiction-and-happiest-memories" aria-label="Read: Taipei - On Addiction & Simple Pleasures">
                             <div class="insight-card-content">
                                 <span>Taipei / December 2024</span>
                                 <h3>On Addiction & Simple Pleasures</h3>
@@ -651,7 +702,7 @@
                     </div>
                 </div>
                 <div class="insights-actions">
-                    <a href="./insights/" class="btn btn-secondary"><i class="fas fa-book-open" style="margin-right:0.35rem;"></i> Explore More Insights</a>
+                    <a href="./insights/" class="btn btn-tertiary"><i class="fas fa-book-open" style="margin-right:0.35rem;"></i> Explore More Insights</a>
                 </div>
             </div>
         </section>
@@ -724,12 +775,24 @@
                     </div>
                 </div>
                 <div class="faq-actions">
-                    <a href="./faq/" class="btn btn-secondary"><i class="fas fa-circle-question" style="margin-right:0.35rem;"></i> Read the Full FAQ</a>
+                    <a href="./faq/" class="btn btn-tertiary"><i class="fas fa-circle-question" style="margin-right:0.35rem;"></i> Read the Full FAQ</a>
                 </div>
             </div>
         </section>
 
     </main>
+    
+    <div id="action-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-title">Article Title</h3>
+            <p>What would you like to do with this insight?</p>
+            <div class="modal-actions">
+                <button id="modal-visit-btn" class="btn btn-primary">Visit Substack</button>
+                <button id="modal-share-btn" class="btn btn-secondary">Share</button>
+                <button id="modal-cancel-btn" class="btn btn-tertiary">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <footer class="main-footer">
         <div class="container">
@@ -744,7 +807,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- IMPROVEMENT: Mobile Navigation Toggle ---
+            // --- Mobile Navigation Toggle ---
             const nav = document.getElementById('main-nav');
             const hamburgerBtn = document.getElementById('hamburger-menu');
             const navLinks = nav.querySelectorAll('a');
@@ -753,7 +816,6 @@
                 hamburgerBtn.addEventListener('click', () => {
                     const isOpen = nav.classList.toggle('is-open');
                     hamburgerBtn.setAttribute('aria-expanded', isOpen);
-                    // Optional: Change icon from bars to times (X)
                     const icon = hamburgerBtn.querySelector('i');
                     if (isOpen) {
                         icon.classList.remove('fa-bars');
@@ -764,7 +826,6 @@
                     }
                 });
 
-                // Close menu when a link is clicked (for single-page navigation)
                 navLinks.forEach(link => {
                     link.addEventListener('click', () => {
                         nav.classList.remove('is-open');
@@ -776,7 +837,7 @@
                 });
             }
             
-            // --- Original FAQ accordion ---
+            // --- FAQ accordion ---
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
@@ -788,9 +849,81 @@
                     item.classList.toggle('active');
                 });
             });
+
+            // --- Modal Logic from insights.html ---
+            const modal = document.getElementById('action-modal');
+            if (!modal) return; 
+
+            const modalTitle = document.getElementById('modal-title');
+            const visitBtn = document.getElementById('modal-visit-btn');
+            const shareBtn = document.getElementById('modal-share-btn');
+            const cancelBtn = document.getElementById('modal-cancel-btn');
+            const insightLinks = document.querySelectorAll('.insight-card a');
+
+            let currentLink = '';
+            let currentTitle = '';
+
+            const openModal = (link, title) => {
+                currentLink = link;
+                currentTitle = title;
+                modalTitle.textContent = title;
+                modal.classList.add('is-visible');
+            };
+
+            const closeModal = () => {
+                modal.classList.remove('is-visible');
+            };
+
+            insightLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); 
+                    const href = link.href;
+                    const title = link.querySelector('h3').textContent.trim();
+                    openModal(href, title);
+                });
+            });
+
+            visitBtn.addEventListener('click', () => {
+                if (currentLink) {
+                    window.open(currentLink, '_blank', 'noopener,noreferrer');
+                }
+                closeModal();
+            });
+
+            shareBtn.addEventListener('click', async () => {
+                const shareData = {
+                    title: `Insight: ${currentTitle}`,
+                    text: `Check out this insight from Curious Souls Café: "${currentTitle}"`,
+                    url: currentLink
+                };
+                if (navigator.share) {
+                    try {
+                        await navigator.share(shareData);
+                    } catch (err) {
+                        console.log('Share action was cancelled or failed.', err);
+                    }
+                } else {
+                    alert('Sharing is not supported on your browser.\nYou can copy the link manually:\n' + currentLink);
+                }
+                closeModal();
+            });
+
+            cancelBtn.addEventListener('click', closeModal);
+
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal.classList.contains('is-visible')) {
+                    closeModal();
+                }
+            });
         });
 
-        // --- Original Smooth scroll with sticky header offset ---
+        // --- Smooth scroll with sticky header offset ---
         (function() {
             const header = document.querySelector('.main-header');
 
@@ -836,4 +969,3 @@
     </script>
 </body>
 </html>
-
