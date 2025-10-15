@@ -1373,7 +1373,9 @@
             if (window.location.hash) {
                 // Get the search term from the URL, remove the '#' and decode it
                 const searchTermFromUrl = decodeURIComponent(window.location.hash.substring(1));
-                if (searchTermFromUrl) {
+                const commandHashes = ['show-back', 'hide-back', 'hide-info'];
+                // Only populate search input if the hash is not a UI command
+                if (searchTermFromUrl && !commandHashes.includes(searchTermFromUrl.toLowerCase())) {
                     searchInput.value = searchTermFromUrl;
                 }
             }
