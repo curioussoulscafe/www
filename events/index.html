@@ -368,7 +368,8 @@
             }
         }
 
-        .modal-overlay {
+        /* --- City Modal Styles --- */
+        #city-modal.modal-overlay {
             position: fixed;
             inset: 0;
             background: rgba(17, 24, 39, 0.55);
@@ -378,10 +379,8 @@
             z-index: 1500;
             padding: 1rem;
         }
-        .modal-overlay.active {
-            display: flex;
-        }
-        .modal {
+        #city-modal.modal-overlay.active { display: flex; }
+        #city-modal .modal {
             background: #fff;
             border-radius: 0.75rem;
             width: 100%;
@@ -389,10 +388,10 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             overflow: hidden;
         }
-        .modal-header { padding: 1rem 1.25rem 0.25rem; text-align: center; }
-        .modal-subheader { padding: 0 1.25rem 0.75rem; text-align: center; color: #6b7280; }
-        .city-list { padding: 0.75rem 1rem 1rem; }
-        .city-item a {
+        #city-modal .modal-header { padding: 1rem 1.25rem 0.25rem; text-align: center; }
+        #city-modal .modal-subheader { padding: 0 1.25rem 0.75rem; text-align: center; color: #6b7280; }
+        #city-modal .city-list { padding: 0.75rem 1rem 1rem; }
+        #city-modal .city-item a {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -405,45 +404,102 @@
             background: #fafafa;
             transition: border-color 0.2s, transform 0.1s, background 0.2s;
         }
-        .city-item a:hover {
+        #city-modal .city-item a:hover {
             border-color: #a78bfa;
             background: #f5f3ff;
             transform: translateY(-1px);
         }
-        .modal-footer { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0.75rem 1rem 1rem; }
-        .btn { padding: 0.5rem 0.9rem; border-radius: 0.625rem; font-weight: 600; border: 1px solid transparent; cursor: pointer; }
-        .btn-close { background: #ffffff; border-color: #e5e7eb; color: #374151; }
-        .btn-close:hover { border-color: #9ca3af; background: #f9fafb; }
+        #city-modal .modal-footer { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0.75rem 1rem 1rem; }
+        #city-modal .btn-close { background: #ffffff; border-color: #e5e7eb; color: #374151; padding: 0.5rem 0.9rem; border-radius: 0.625rem; font-weight: 600; border: 1px solid transparent; cursor: pointer; }
+        #city-modal .btn-close:hover { border-color: #9ca3af; background: #f9fafb; }
 
-        .action-btn {
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1rem;
-            border-radius: 0.625rem;
+        /* --- New Event Action Modal Styles --- */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
             font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
             border: 1px solid transparent;
             cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
+            font-size: 0.95rem;
         }
-        .action-btn-primary {
+        .btn-primary {
             background-color: var(--primary-color);
-            color: white;
+            color: var(--bg-white);
             border-color: var(--primary-color);
         }
-        .action-btn-primary:hover {
-            background-color: #5b21b6;
+        .btn-primary:hover { 
+            background-color: #5837a0;
+            color: var(--bg-white);
+            transform: translateY(-2px); 
         }
-        .action-btn-secondary {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--bg-white);
+        }
+        .btn-secondary:hover {
+            background-color: #9333ea;
+            transform: translateY(-2px);
+        }
+        .btn-tertiary {
+            background-color: transparent;
+            color: var(--text-light);
             border-color: var(--border-color);
         }
-        .action-btn-secondary:hover {
-            background-color: #f3f4f6;
-            border-color: #d1d5db;
+        .btn-tertiary:hover {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
+        }
+        .modal-overlay.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0s;
+        }
+        .modal-content {
+            background-color: var(--bg-white);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.is-visible .modal-content {
+            transform: scale(1);
+        }
+        .modal-content h3 {
+            margin-top: 0;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+        .modal-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         @media (max-width: 480px) {
@@ -1240,21 +1296,15 @@
         </div>
     </div>
 
-    <div id="event-action-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="event-action-modal-title" aria-modal="true">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 id="event-action-modal-title" class="text-lg font-semibold text-gray-800 px-2"></h3>
-            </div>
-            <div class="p-4 pt-2 space-y-3">
-                 <a id="action-btn-meetup" href="#" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-primary">
-                     <i class="fas fa-external-link-alt mr-2"></i> View on Meetup
-                 </a>
-                 <button id="action-btn-share" class="action-btn action-btn-secondary">
-                     <i class="fas fa-share-alt mr-2"></i> Share Event
-                 </button>
-            </div>
-            <div class="modal-footer">
-                <button id="action-btn-cancel" class="btn btn-close">Cancel</button>
+    <div id="event-action-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-title">Event Title</h3>
+            <br>
+            <p>What would you like to do with this event?</p>
+            <div class="modal-actions">
+                <button id="modal-visit-btn" class="btn btn-primary">View on Meetup</button>
+                <button id="modal-share-btn" class="btn btn-secondary">Share</button>
+                <button id="modal-cancel-btn" class="btn btn-tertiary">Cancel</button>
             </div>
         </div>
     </div>
@@ -1567,78 +1617,87 @@
 
             // --- New Event Action Modal Logic ---
             const eventActionModal = document.getElementById('event-action-modal');
-            const eventActionModalTitle = document.getElementById('event-action-modal-title');
-            const actionBtnMeetup = document.getElementById('action-btn-meetup');
-            const actionBtnShare = document.getElementById('action-btn-share');
-            const actionBtnCancel = document.getElementById('action-btn-cancel');
+            if (eventActionModal) {
+                const modalTitle = document.getElementById('modal-title');
+                const visitBtn = document.getElementById('modal-visit-btn');
+                const shareBtn = document.getElementById('modal-share-btn');
+                const cancelBtn = document.getElementById('modal-cancel-btn');
 
-            function openActionModal() {
-                eventActionModal.classList.add('active');
-                eventActionModal.setAttribute('aria-hidden', 'false');
-            }
+                let currentMeetupLink = '';
+                let currentShareLink = '';
+                let currentTitle = '';
 
-            function closeActionModal() {
-                eventActionModal.classList.remove('active');
-                eventActionModal.setAttribute('aria-hidden', 'true');
-            }
+                const openActionModal = (meetupLink, shareLink, title) => {
+                    currentMeetupLink = meetupLink;
+                    currentShareLink = shareLink;
+                    currentTitle = title;
+                    modalTitle.textContent = title;
+                    eventActionModal.classList.add('is-visible');
+                };
 
-            eventLinks.forEach(link => {
-                // Skip the private event link to preserve its original alert functionality
-                if (link.id === 'event-96-link') return;
+                const closeActionModal = () => {
+                    eventActionModal.classList.remove('is-visible');
+                };
 
-                link.addEventListener('click', (event) => {
-                    event.preventDefault();
+                eventLinks.forEach(link => {
+                    if (link.id === 'event-96-link') return;
 
-                    const title = link.querySelector('.event-title').textContent.trim();
-                    const meetupUrl = link.href;
-                    const globalNumText = link.querySelector('.session-block.global .session-value').textContent;
-                    const globalNum = globalNumText.replace('#', '');
+                    link.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        
+                        const meetupUrl = link.href;
+                        const title = link.querySelector('.event-title').textContent.trim();
+                        
+                        const globalNumText = link.querySelector('.session-block.global .session-value').textContent;
+                        const globalNum = globalNumText.replace('#', '');
+                        const shareableLink = new URL(window.location.href);
+                        shareableLink.hash = `global:${globalNum}`;
 
-                    const shareableLink = new URL(window.location.href);
-                    shareableLink.hash = `global:${globalNum}`;
-
-                    // Populate modal
-                    eventActionModalTitle.textContent = title;
-                    actionBtnMeetup.href = meetupUrl;
-                    actionBtnShare.dataset.shareTitle = title;
-                    actionBtnShare.dataset.shareUrl = shareableLink.href;
-                    
-                    openActionModal();
+                        openActionModal(meetupUrl, shareableLink.href, title);
+                    });
                 });
-            });
 
-            actionBtnShare.addEventListener('click', async (e) => {
-                const { shareTitle, shareUrl } = e.currentTarget.dataset;
-
-                if (navigator.share) {
-                    try {
-                        await navigator.share({
-                            title: shareTitle,
-                            text: `Check out this Curious Souls Café event: ${shareTitle}`,
-                            url: shareUrl,
-                        });
-                    } catch (error) {
-                        console.error('Sharing failed:', error);
+                visitBtn.addEventListener('click', () => {
+                    if (currentMeetupLink) {
+                        window.open(currentMeetupLink, '_blank', 'noopener,noreferrer');
                     }
-                } else {
-                    alert(`Sharing not supported. Here is the link to copy:\n${shareUrl}`);
-                }
-                closeActionModal();
-            });
-            
-            actionBtnCancel.addEventListener('click', closeActionModal);
-            actionBtnMeetup.addEventListener('click', () => setTimeout(closeActionModal, 150));
-            eventActionModal.addEventListener('click', (e) => {
-                if (e.target === eventActionModal) closeActionModal();
-            });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && eventActionModal.classList.contains('active')) {
                     closeActionModal();
-                }
-            });
+                });
 
+                shareBtn.addEventListener('click', async () => {
+                    const shareData = {
+                        title: `Curious Souls Café: ${currentTitle}`,
+                        url: currentShareLink
+                    };
+                    if (navigator.share) {
+                        try {
+                            await navigator.share(shareData);
+                        } catch (err) {
+                            console.log('Share action was cancelled or failed.', err);
+                        }
+                    } else {
+                        alert('Sharing is not supported on your browser.\nYou can copy the link manually:\n' + currentShareLink);
+                    }
+                    closeActionModal();
+                });
+
+                cancelBtn.addEventListener('click', closeActionModal);
+
+                eventActionModal.addEventListener('click', (event) => {
+                    if (event.target === eventActionModal) {
+                        closeActionModal();
+                    }
+                });
+
+                document.addEventListener('keydown', (event) => {
+                    if (event.key === 'Escape' && eventActionModal.classList.contains('is-visible')) {
+                        closeActionModal();
+                    }
+                });
+            }
         });
     </script>
+
 
 
     <!-- [Tip: Do not remove]
