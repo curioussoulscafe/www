@@ -478,7 +478,7 @@
                 <br>
 
                 <div class="mb-6 relative">
-                    <input type="text" id="search-input" placeholder="Search title, #num (global/regional)" class="w-full p-3 pl-10 border border-gray-300 rounded-full focus:ring-purple-500 focus:border-purple-500 transition">
+                    <input type="text" id="search-input" placeholder="Search title, global:num, or city:num (e.g., hongkong:37)" class="w-full p-3 pl-10 border border-gray-300 rounded-full focus:ring-purple-500 focus:border-purple-500 transition">
                     <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                 </div>
 
@@ -1262,12 +1262,18 @@
             const eventLinks = document.querySelectorAll('#event-list-container .event-link');
             const otherCities = ['Beijing', 'Guangzhou', 'Macau', 'Shanghai', 'Shenzhen', 'Zoom'];
             const cityPrefixMap = {
-                'hk': 'Hong Kong',
-                'kl': 'Kuala Lumpur',
+                'hongkong': 'Hong Kong',
+                'kualalumpur': 'Kuala Lumpur',
                 'osaka': 'Osaka',
                 'seoul': 'Seoul',
-                'sg': 'Singapore',
-                'taipei': 'Taipei'
+                'singapore': 'Singapore',
+                'taipei': 'Taipei',
+                'macau': 'Macau',
+                'beijing': 'Beijing',
+                'shanghai': 'Shanghai',
+                'guangzhou': 'Guangzhou',
+                'shenzhen': 'Shenzhen',
+                'zoom': 'Zoom',
             };
 
             const selectedCityFilters = new Set();
@@ -1314,18 +1320,21 @@
                         searchMatch = true;
                     } else if (searchTerm.includes(':')) {
                         const [prefix, numQuery] = searchTerm.split(':');
-                        const targetCity = cityPrefixMap[prefix];
-                        if (targetCity && targetCity === eventCity) {
+                        // Handle global search like 'global:112'
+                        if (prefix === 'global') {
                             const targetNumbers = parseNumbers(numQuery);
-                            if (targetNumbers.includes(regionalNum)) {
+                            if (targetNumbers.includes(globalNum)) {
                                 searchMatch = true;
                             }
-                        }
-                    } else if (searchTerm.startsWith('#')) {
-                        const query = searchTerm.substring(1).trim();
-                        const targetNumbers = parseNumbers(query);
-                        if (targetNumbers.includes(globalNum) || targetNumbers.includes(regionalNum)) {
-                            searchMatch = true;
+                        // Handle regional searches like 'singapore:37'
+                        } else {
+                            const targetCity = cityPrefixMap[prefix];
+                            if (targetCity && targetCity === eventCity) {
+                                const targetNumbers = parseNumbers(numQuery);
+                                if (targetNumbers.includes(regionalNum)) {
+                                    searchMatch = true;
+                                }
+                            }
                         }
                     } else {
                         searchMatch = eventTitle.includes(searchTerm);
@@ -1353,6 +1362,17 @@
             if (searchInput) {
                 searchInput.addEventListener('input', filterAndSearchEvents);
             }
+            
+            // --- Start of ADDED URL Hash Logic ---
+            if (window.location.hash) {
+                // Get the search term from the URL, remove the '#' and decode it
+                const searchTermFromUrl = decodeURIComponent(window.location.hash.substring(1));
+                if (searchTermFromUrl) {
+                    searchInput.value = searchTermFromUrl;
+                }
+            }
+            // --- End of ADDED URL Hash Logic ---
+            
             filterAndSearchEvents();
             
             // --- Start of ADDED Back Button Logic ---
@@ -1498,5 +1518,22 @@
             }
         });
     </script>
+    <!-- [Tip: Do not remove]
+
+    Create links that automatically trigger a search:
+
+    To find Global session #110:
+    .../index.html#global:110
+
+    To find Singapore session #37:
+    .../index.html#singapore:37
+
+    To find all events with 'love' in the title:
+    .../index.html#love
+
+    To find a range of Hong Kong sessions:
+    .../index.html#hongkong:30-35
+
+    -->
 </body>
 </html>
