@@ -205,6 +205,7 @@
             text-decoration: none;
             color: inherit;
             display: block;
+            cursor: pointer;
         }
         /* Strong rule to prevent underline on hover/focus/active for event links and children */
         .event-link,
@@ -232,7 +233,7 @@
             transition: all 0.2s ease-in-out;
             border: 1px solid #e2e8f0;
         }
-        .event-card:hover {
+        .event-link:hover .event-card {
             transform: translateY(-3px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
@@ -413,6 +414,38 @@
         .btn { padding: 0.5rem 0.9rem; border-radius: 0.625rem; font-weight: 600; border: 1px solid transparent; cursor: pointer; }
         .btn-close { background: #ffffff; border-color: #e5e7eb; color: #374151; }
         .btn-close:hover { border-color: #9ca3af; background: #f9fafb; }
+
+        .action-btn {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border-radius: 0.625rem;
+            font-weight: 600;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .action-btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        .action-btn-primary:hover {
+            background-color: #5b21b6;
+        }
+        .action-btn-secondary {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            border-color: var(--border-color);
+        }
+        .action-btn-secondary:hover {
+            background-color: #f3f4f6;
+            border-color: #d1d5db;
+        }
+
         @media (max-width: 480px) {
             .event-card { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
             .event-session-numbers { width: 100%; flex-direction: row; }
@@ -889,18 +922,6 @@
                     <div class="event-details"><p class="event-title">Pause, Reflect, and Reconnect at Curious Souls Café</p><div class="event-meta"><span><i class="fas fa-map-marker-alt"></i> Hong Kong</span><span><i class="fas fa-calendar-alt"></i> Thursday, 8 May 2025</span><span><i class="fas fa-clock"></i> 7:00 pm</span></div></div>
                 </div>
             </a>
-            <a href="https://www.meetup.com/curious-souls-cafe-singapore/events/307383659/" target="_blank" rel="noopener noreferrer" class="event-link" data-city="Singapore">
-                <div class="event-card">
-                    <div class="event-session-numbers"><div class="session-block global"><span class="session-label">Global</span><span class="session-value">#47</span></div><div class="session-block local"><span class="session-label">Singapore</span><span class="session-value">#17</span></div></div>
-                    <div class="event-details"><p class="event-title">The Heart Talks 2.0: Deep Conversations about Love Relationships</p><div class="event-meta"><span><i class="fas fa-map-marker-alt"></i> Singapore</span><span><i class="fas fa-calendar-alt"></i> Thursday, 24 April 2025</span><span><i class="fas fa-clock"></i> 7:15 pm</span></div></div>
-                </div>
-            </a>
-            <a href="https://www.meetup.com/curious-souls-cafe/events/307416103/" target="_blank" rel="noopener noreferrer" class="event-link" data-city="Hong Kong">
-                <div class="event-card">
-                    <div class="event-session-numbers"><div class="session-block global"><span class="session-label">Global</span><span class="session-value">#46</span></div><div class="session-block local"><span class="session-label">Hong Kong</span><span class="session-value">#17</span></div></div>
-                    <div class="event-details"><p class="event-title">Pause, Reflect, and Reconnect at Curious Souls Café</p><div class="event-meta"><span><i class="fas fa-map-marker-alt"></i> Hong Kong</span><span><i class="fas fa-calendar-alt"></i> Thursday, 24 April 2025</span><span><i class="fas fa-clock"></i> 7:00 pm</span></div></div>
-                </div>
-            </a>
             <a href="https://www.meetup.com/curious-souls-cafe/events/306911710/" target="_blank" rel="noopener noreferrer" class="event-link" data-city="Shanghai">
                 <div class="event-card">
                     <div class="event-session-numbers"><div class="session-block global"><span class="session-label">Global</span><span class="session-value">#45</span></div><div class="session-block local"><span class="session-label">Shanghai</span><span class="session-value">#1</span></div></div>
@@ -1168,7 +1189,7 @@
             <a href="https://www.meetup.com/curious-souls-cafe/events/302313098/" target="_blank" rel="noopener noreferrer" class="event-link" data-city="Hong Kong">
                 <div class="event-card">
                     <div class="event-session-numbers"><div class="session-block global"><span class="session-label">Global</span><span class="session-value">#1</span></div><div class="session-block local"><span class="session-label">Hong Kong</span><span class="session-value">#1</span></div></div>
-                    <div class="event-details"><p class="event-title">Curious Souls Café - Meaningful Conversation for Curious Minds</p><div class="event-meta"><span><i class="fas fa-map-marker-alt"></i> Hong Kong</span><span><i class="fas fa-calendar-alt"></i> Thursday, 25 July 2024</span><span><i class="fas fa-clock"></i> 7:30 pm</span></div></div>
+                    <div class="event-details"><p class="event-title">Curious Souls Café - Meaningful Conversation for Curious Minds</p<div class="event-meta"><span><i class="fas fa-map-marker-alt"></i> Hong Kong</span><span><i class="fas fa-calendar-alt"></i> Thursday, 25 July 2024</span><span><i class="fas fa-clock"></i> 7:30 pm</span></div></div>
                 </div>
             </a>
         </div>
@@ -1215,6 +1236,25 @@
             </div>
             <div class="modal-footer">
                 <button id="city-modal-close" class="btn btn-close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="event-action-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="event-action-modal-title" aria-modal="true">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="event-action-modal-title" class="text-lg font-semibold text-gray-800 px-2"></h3>
+            </div>
+            <div class="p-4 pt-2 space-y-3">
+                 <a id="action-btn-meetup" href="#" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-primary">
+                     <i class="fas fa-external-link-alt mr-2"></i> View on Meetup
+                 </a>
+                 <button id="action-btn-share" class="action-btn action-btn-secondary">
+                     <i class="fas fa-share-alt mr-2"></i> Share Event
+                 </button>
+            </div>
+            <div class="modal-footer">
+                <button id="action-btn-cancel" class="btn btn-close">Cancel</button>
             </div>
         </div>
     </div>
@@ -1524,8 +1564,83 @@
                     }
                 });
             }
+
+            // --- New Event Action Modal Logic ---
+            const eventActionModal = document.getElementById('event-action-modal');
+            const eventActionModalTitle = document.getElementById('event-action-modal-title');
+            const actionBtnMeetup = document.getElementById('action-btn-meetup');
+            const actionBtnShare = document.getElementById('action-btn-share');
+            const actionBtnCancel = document.getElementById('action-btn-cancel');
+
+            function openActionModal() {
+                eventActionModal.classList.add('active');
+                eventActionModal.setAttribute('aria-hidden', 'false');
+            }
+
+            function closeActionModal() {
+                eventActionModal.classList.remove('active');
+                eventActionModal.setAttribute('aria-hidden', 'true');
+            }
+
+            eventLinks.forEach(link => {
+                // Skip the private event link to preserve its original alert functionality
+                if (link.id === 'event-96-link') return;
+
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    const title = link.querySelector('.event-title').textContent.trim();
+                    const meetupUrl = link.href;
+                    const globalNumText = link.querySelector('.session-block.global .session-value').textContent;
+                    const globalNum = globalNumText.replace('#', '');
+
+                    const shareableLink = new URL(window.location.href);
+                    shareableLink.hash = `global:${globalNum}`;
+
+                    // Populate modal
+                    eventActionModalTitle.textContent = title;
+                    actionBtnMeetup.href = meetupUrl;
+                    actionBtnShare.dataset.shareTitle = title;
+                    actionBtnShare.dataset.shareUrl = shareableLink.href;
+                    
+                    openActionModal();
+                });
+            });
+
+            actionBtnShare.addEventListener('click', async (e) => {
+                const { shareTitle, shareUrl } = e.currentTarget.dataset;
+
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: shareTitle,
+                            text: `Check out this Curious Souls Café event: ${shareTitle}`,
+                            url: shareUrl,
+                        });
+                    } catch (error) {
+                        console.error('Sharing failed:', error);
+                    }
+                } else {
+                    alert(`Sharing not supported. Here is the link to copy:\n${shareUrl}`);
+                }
+                closeActionModal();
+            });
+            
+            actionBtnCancel.addEventListener('click', closeActionModal);
+            actionBtnMeetup.addEventListener('click', () => setTimeout(closeActionModal, 150));
+            eventActionModal.addEventListener('click', (e) => {
+                if (e.target === eventActionModal) closeActionModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && eventActionModal.classList.contains('active')) {
+                    closeActionModal();
+                }
+            });
+
         });
     </script>
+
+
     <!-- [Tip: Do not remove]
 
     Create links that automatically trigger a search:
@@ -1543,5 +1658,5 @@
     .../index.html#hongkong:30-35
 
     -->
-</body>
+    </body>
 </html>
