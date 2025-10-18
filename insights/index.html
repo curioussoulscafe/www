@@ -66,6 +66,26 @@
             cursor: pointer;
             z-index: 1001;
         }
+
+        .hero {
+            background: linear-gradient(to right, #f3f4f6 0%, #ede9fe 20%, #ede9fe 80%, #f3f4f6 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
         section { 
             padding: 4rem 0; 
             scroll-margin-top: 90px;
@@ -96,7 +116,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            cursor: pointer; /* Change cursor to indicate it's clickable */
+            cursor: pointer;
         }
         .insight-card-content { 
             padding: 1.5rem; 
@@ -115,7 +135,8 @@
             color: var(--text-light);
             font-style: italic;
         }
-        /* --- Footer --- */
+
+        /* Footer */
         .main-footer {
             background-color: var(--text-dark);
             color: #d1d5db;
@@ -139,11 +160,8 @@
         .footer-links a:hover { text-decoration: underline; }
         .footer-copyright { margin-top: 1.5rem; font-size: 0.875rem; }
 
-        /* --- Improved Footer Styles --- */
-        .main-footer {
-            padding: 3rem 0 2rem; /* Adjusted padding */
-        }
-
+        /* Improved Footer */
+        .main-footer { padding: 3rem 0 2rem; }
         .footer-top {
             display: flex;
             flex-direction: column;
@@ -151,7 +169,6 @@
             gap: 1rem;
             margin-bottom: 2rem;
         }
-
         .footer-logo {
             display: flex;
             align-items: center;
@@ -161,25 +178,22 @@
             font-size: 1.25rem;
             font-weight: 700;
         }
-
         .footer-logo img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             border: 2px solid var(--secondary-color);
         }
-
         .footer-links {
             margin-bottom: 1.5rem;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.5rem 1.5rem; /* Row and column gap */
+            gap: 0.5rem 1.5rem;
         }
-
         .footer-contact-links {
             margin-bottom: 1.5rem;
-            color: #9ca3af; /* A slightly dimmer color for the separator */
+            color: #9ca3af;
         }
         .footer-contact-links a {
             color: #d1d5db;
@@ -187,28 +201,13 @@
             font-weight: 500;
             margin: 0 0.5rem;
         }
-        .footer-contact-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Make your existing .footer-socials styles work with the new structure */
-        .footer-socials {
-            margin-bottom: 0; /* Override existing margin */
-        }
-
-        /* Keep your original styles for socials, links, and copyright */
+        .footer-contact-links a:hover { text-decoration: underline; }
+        .footer-socials { margin-bottom: 0; }
         .footer-socials a { color: #d1d5db; font-size: 1.5rem; margin: 0 0.75rem; transition: color 0.2s; }
         .footer-socials a:hover { color: var(--secondary-color); }
         .footer-copyright { margin-top: 1.5rem; font-size: 0.875rem; color: #9ca3af; }
 
-        /* Responsive adjustment for the footer top section */
-        @media (min-width: 768px) {
-            .footer-top {
-            flex-direction: row;
-            justify-content: center; /* was space-between /
-            gap: 1.5rem; / add a gap if you re-enable the logo later */
-            }
-        }
+        /* Buttons */
         .btn {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -217,8 +216,8 @@
             text-decoration: none;
             transition: all 0.2s ease-in-out;
             border: 1px solid transparent;
-            cursor: pointer; /* Ensure buttons have pointer cursor */
-            font-size: 0.95rem; /* Standardize button font size */
+            cursor: pointer;
+            font-size: 0.95rem;
         }
         .btn-primary {
             background-color: var(--primary-color);
@@ -226,7 +225,7 @@
             border-color: var(--primary-color);
         }
         .btn-primary:hover { 
-            background-color: #5837a0; /* Darken primary color on hover */
+            background-color: #5837a0;
             color: var(--bg-white);
             transform: translateY(-2px); 
         }
@@ -234,7 +233,6 @@
             outline: 3px solid rgba(104, 64, 199, 0.3);
             outline-offset: 2px;
         }
-        /* New button styles for modal */
         .btn-secondary {
             background-color: var(--secondary-color);
             color: var(--bg-white);
@@ -252,7 +250,8 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
         }
-        /* Modal Styles */
+
+        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -305,6 +304,9 @@
 
         @media (max-width: 768px) {
             section { padding: 3rem 0; scroll-margin-top: 72px; }
+            .hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .hero h1 { font-size: 2rem; }
+
             .hamburger-menu { display: block; }
             .main-nav {
                 position: fixed; top: 0; right: 0; width: 280px; height: 100%;
@@ -349,12 +351,16 @@
     </header>
 
     <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Insights From Our Gatherings</h1>
+                <p>Curious about our conversations? Here's a glimpse into the profound and thought-provoking topics we've explored together in our sessions across the globe.</p>
+            </div>
+        </section>
+
+        <!-- Original insights section (content grid) -->
         <section id="insights">
             <div class="container">
-                <div class="section-header">
-                    <h2>Insights From Our Gatherings</h2>
-                    <p>Curious about our conversations? Here's a glimpse into the profound and thought-provoking topics we've explored together in our sessions across the globe.</p>
-                </div>
                 <div class="insights-grid">
                     <div class="insight-card">
                         <a href="https://curioussoulscafe.substack.com/p/authenticity-values-and-responsibility-conversations-at-curious-souls-cafe-singapore" aria-label="Read: Singapore - On Authenticity, Values & Responsibility" target="_blank" rel="noopener noreferrer">
@@ -506,7 +512,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Existing Hamburger Menu Logic ---
+            // Hamburger menu
             const nav = document.getElementById('main-nav');
             const hamburgerBtn = document.getElementById('hamburger-menu');
             if (hamburgerBtn && nav) {
@@ -524,9 +530,8 @@
                 });
             }
 
-            // --- New Modal Logic ---
+            // Modal logic
             const modal = document.getElementById('action-modal');
-            // Exit if modal is not on the page to prevent errors
             if (!modal) return; 
 
             const modalTitle = document.getElementById('modal-title');
@@ -551,7 +556,6 @@
 
             insightLinks.forEach(link => {
                 link.addEventListener('click', (event) => {
-                    // Prevent default navigation to the href
                     event.preventDefault(); 
                     const href = link.href;
                     const title = link.querySelector('h3').textContent.trim();
@@ -567,20 +571,11 @@
             });
 
             shareBtn.addEventListener('click', async () => {
-                const shareData = {
-                    title: currentTitle,
-                    url: currentLink
-                };
-                // Check if the Web Share API is supported by the browser
+                const shareData = { title: currentTitle, url: currentLink };
                 if (navigator.share) {
-                    try {
-                        await navigator.share(shareData);
-                    } catch (err) {
-                        // This can happen if the user cancels the share. No need to show an error.
-                        console.log('Share action was cancelled or failed.', err);
-                    }
+                    try { await navigator.share(shareData); }
+                    catch (err) { console.log('Share cancelled or failed.', err); }
                 } else {
-                    // Fallback for browsers that do not support the Web Share API (e.g., desktop)
                     alert('Sharing is not supported on your browser.\nYou can copy the link manually:\n' + currentLink);
                 }
                 closeModal();
@@ -588,14 +583,10 @@
 
             cancelBtn.addEventListener('click', closeModal);
 
-            // Also close the modal if the user clicks on the overlay background
             modal.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    closeModal();
-                }
+                if (event.target === modal) closeModal();
             });
 
-            // Close modal with the Escape key for better accessibility
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape' && modal.classList.contains('is-visible')) {
                     closeModal();
