@@ -87,7 +87,7 @@
         
         /* --- Main Content --- */
         .content-section {
-            padding: 3rem 1.5rem; /* MODIFIED: Added horizontal padding for mobile view */
+            padding: 3rem 1.5rem;
             background-color: var(--bg-white);
         }
         .content-body {
@@ -133,7 +133,7 @@
             margin-bottom: 0.75rem;
         }
         .content-body li::before {
-            content: '\f105'; /* fa-chevron-right */
+            content: '\f105';
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             color: var(--secondary-color);
@@ -200,7 +200,7 @@
 
         /* --- Improved Footer Styles --- */
         .main-footer {
-            padding: 3rem 0 2rem; /* Adjusted padding */
+            padding: 3rem 0 2rem;
         }
 
         .footer-top {
@@ -233,12 +233,12 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 0.5rem 1.5rem; /* Row and column gap */
+            gap: 0.5rem 1.5rem;
         }
 
         .footer-contact-links {
             margin-bottom: 1.5rem;
-            color: #9ca3af; /* A slightly dimmer color for the separator */
+            color: #9ca3af;
         }
         .footer-contact-links a {
             color: #d1d5db;
@@ -250,56 +250,23 @@
             text-decoration: underline;
         }
 
-        /* Make your existing .footer-socials styles work with the new structure */
         .footer-socials {
-            margin-bottom: 0; /* Override existing margin */
+            margin-bottom: 0;
         }
 
-        /* Keep your original styles for socials, links, and copyright */
         .footer-socials a { color: #d1d5db; font-size: 1.5rem; margin: 0 0.75rem; transition: color 0.2s; }
         .footer-socials a:hover { color: var(--secondary-color); }
         .footer-copyright { margin-top: 1.5rem; font-size: 0.875rem; color: #9ca3af; }
 
-        /* Responsive adjustment for the footer top section */
         @media (min-width: 768px) {
             .footer-top {
-            flex-direction: row;
-            justify-content: center; /* was space-between /
-            gap: 1.5rem; / add a gap if you re-enable the logo later */
+                flex-direction: row;
+                justify-content: center;
+                gap: 1.5rem;
             }
         }
 
-        /* Modal and Floating Button Styles from welcome/ */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center;
-            align-items: center; z-index: 2000; opacity: 0; visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s; padding: 1rem; box-sizing: border-box;
-        }
-        .modal-overlay.show { opacity: 1; visibility: visible; }
-        .modal-content {
-            background-color: white; padding: 2rem; border-radius: 0.75rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); text-align: center;
-            max-width: 360px; width: 100%; transform: translateY(-20px); transition: transform 0.3s;
-        }
-        .modal-overlay.show .modal-content { transform: translateY(0); }
-        #qr-modal-content { max-width: 380px; padding: 1.5rem; position: relative; }
-        #qr-modal-content img {
-            width: 100%; height: auto; max-width: 250px; margin: 0 auto 1rem auto;
-            display: block; border-radius: 0.5rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .qr-modal-close-button {
-            position: absolute; top: 0.75rem; right: 0.75rem; background: none; border: none;
-            font-size: 1.5rem; cursor: pointer; color: #4a5568; line-height: 1;
-            padding: 0.25rem; border-radius: 50%; transition: background-color 0.2s, color 0.2s;
-        }
-        .qr-modal-close-button:hover { background-color: #e2e8f0; color: #2d3748; }
-        .qr-code-link {
-            font-size: 1rem; color: var(--primary-color); text-decoration: none; font-weight: 600;
-            transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
-            display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;
-        }
-        .qr-code-link:hover { color: var(--secondary-color); text-decoration: underline; }
+        /* Floating Back Button Styles */
         .floating-back-btn {
             position: fixed; left: 1rem; bottom: 1rem; z-index: 3000;
             background-color: var(--primary-color); color: white; border: none; padding: .65rem .9rem; border-radius: 9999px;
@@ -315,11 +282,10 @@
           100% { transform: translateY(0) scale(1);   background-color: var(--pulse-from); box-shadow: 0 0 0 rgba(0,0,0,0), 0 8px 16px rgba(0,0,0,.15); }
         }
         .floating-back-btn.attention { animation: backBtnPulse 900ms ease-in-out 0s 3; }
-        .btn-disabled { opacity: 0.5; cursor: not-allowed; text-decoration: none !important; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
-            .hero { padding-left: 1.5rem; padding-right: 1.5rem; } /* MODIFIED: Added horizontal padding to hero on mobile */
+            .hero { padding-left: 1.5rem; padding-right: 1.5rem; }
             .hamburger-menu { display: block; }
             .main-nav {
                 position: fixed; top: 0; right: 0; width: 280px; height: 100%;
@@ -404,9 +370,6 @@
             
                 <h2 id="disclaimer">Disclaimer</h2>
                 <p>Curious Souls Café fosters open discussions for idea exploration, not professional advice; participants are responsible for their well-being and encouraged to consult qualified professionals when needed.</p>
-                <a href="#" id="show-qr-code-link" class="qr-code-link">
-                  <i class="fas fa-qrcode"></i> Show a QR Code/Link for this Page
-                </a>
             </div>
         </section>
     </main>
@@ -436,96 +399,7 @@
         Back
     </button>
 
-    <div id="qr-code-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="qr-modal-title" aria-modal="true">
-        <div id="qr-modal-content" class="modal-content">
-            <button class="qr-modal-close-button" id="qr-modal-close-button" aria-label="Close">&times;</button>
-            <h3 id="qr-modal-title" style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem;">Share this Page</h3>
-            <p style="color: #6b7280; font-size: 0.875rem; margin-bottom: 1rem;">Scan the QR code below to quickly share or access this page:</p>
-            <img id="qr-modal-image" src="images/qr/qr-code-welcome.png" alt="QR Code for this page"
-                 onerror="this.onerror=null;this.src='https://placehold.co/250x250/E0E0E0/6B46C1?text=QR+Code+Loading';">
-  
-            <p style="font-size: 0.875rem; color: #1f2937; margin-top: 0.5rem;">
-                <i class="fa-solid fa-link" style="margin-right: 0.25rem;"></i> 
-                <a id="page-direct-link" href="https://curioussouls.cafe/welcome" style="word-break: break-all;">https://curioussouls.cafe/welcome</a>
-                <br>
-                <button id="copy-link-text-link" style="background: none; border: none; color: var(--primary-color); font-size: 0.875rem; margin-top: 1rem; cursor: pointer; font-weight: 600;" type="button"><i class="fas fa-copy"></i>&nbsp;&nbsp;Copy page link</button>
-                &nbsp;<span style="color: #d1d5db; user-select: none;">|</span>&nbsp;&nbsp;
-                <button id="share-link-button" style="background: none; border: none; color: var(--primary-color); font-size: 0.875rem; margin-top: 1rem; cursor: pointer; font-weight: 600;" type="button"><i class="fas fa-share-from-square"></i> Share...</button>
-            </p>
-            <p style="color: #6b7280; font-size: 0.875rem; margin-top: 1rem;">Let's help fellow curious souls launch this page and start the conversation! 😊</p>
-        </div>
-    </div>
-  
     <script>
-      // Elements
-      const showQrCodeLink = document.getElementById('show-qr-code-link');
-      const qrCodeModal = document.getElementById('qr-code-modal');
-      const qrModalImage = document.getElementById('qr-modal-image');
-      const qrModalCloseButton = document.getElementById('qr-modal-close-button');
-      const copyLinkTextLink = document.getElementById('copy-link-text-link');
-      const shareLinkButton = document.getElementById('share-link-button');
-      const pageDirectLink = document.getElementById('page-direct-link');
-  
-      // Helper: Get the current page URL without any hash
-      function getCleanUrl() {
-        return `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
-      }
-
-      // Helper: open/close modal with basic focus management
-      function openModal() {
-        const cleanUrl = getCleanUrl();
-        const qrCodeApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(cleanUrl)}`;
-        qrModalImage.src = qrCodeApiUrl;
-        qrCodeModal.classList.add('show');
-        qrCodeModal.setAttribute('aria-hidden', 'false');
-        qrModalCloseButton.focus();
-        pageDirectLink.href = cleanUrl;
-        pageDirectLink.textContent = cleanUrl;
-      }
-      function closeModal() {
-        qrCodeModal.classList.remove('show');
-        qrCodeModal.setAttribute('aria-hidden', 'true');
-        showQrCodeLink.focus();
-      }
-  
-      // Event Listeners
-      showQrCodeLink.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
-      qrModalCloseButton.addEventListener('click', closeModal);
-      qrCodeModal.addEventListener('click', (e) => { if (e.target === qrCodeModal) closeModal(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && qrCodeModal.classList.contains('show')) closeModal(); });
-  
-      // Copy link
-      copyLinkTextLink.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const cleanUrl = getCleanUrl();
-        try {
-          await navigator.clipboard.writeText(cleanUrl);
-          alert('Link copied to clipboard!');
-        } catch (err) {
-            alert('Unable to copy link.');
-        }
-      });
-  
-      // Share link
-      function updateShareButtonAvailability() {
-        if (!navigator.share) {
-          shareLinkButton.classList.add('btn-disabled');
-          shareLinkButton.setAttribute('aria-disabled', 'true');
-          shareLinkButton.title = 'Sharing not supported by this browser';
-        }
-      }
-      shareLinkButton.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const cleanUrl = getCleanUrl();
-        if (!navigator.share) {
-            try { await navigator.clipboard.writeText(cleanUrl); alert('Sharing not supported. Link copied instead.'); } catch {} return;
-        }
-        try {
-          await navigator.share({ title: document.title, text: 'Join me at Curious Souls Café!', url: cleanUrl });
-        } catch (err) { console.warn('Share canceled or failed:', err); }
-      });
-  
-      // --- All logic runs after the DOM is loaded ---
       document.addEventListener('DOMContentLoaded', () => {
         const floatingBackButton = document.getElementById('floating-back-button');
         const nav = document.getElementById('main-nav');
@@ -542,46 +416,32 @@
                 }
             });
             
-            // Helper function for the attention-grabbing animation
             function runBackButtonAttention() {
                 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                 if (!prefersReduced) {
                     floatingBackButton.classList.add('attention');
-                    // Remove the class after the animation completes (900ms * 3 = 2700ms)
                     setTimeout(() => {
                         floatingBackButton.classList.remove('attention');
                     }, 2700);
                 }
             }
             
-            // Function to show/hide the button based on the URL hash
             function applyBackButtonHashRule() {
                 const hash = (window.location.hash || '').toLowerCase();
-                
-                // Reset inline styles first
                 floatingBackButton.style.display = '';
-
                 if (hash === '#hide-back') {
                     floatingBackButton.style.display = 'none';
                 } else if (hash === '#show-back') {
                     floatingBackButton.style.display = 'inline-flex';
-                    runBackButtonAttention(); // Trigger attention effect
+                    runBackButtonAttention();
                 } else {
-                    // Default behavior: button is not shown
                     floatingBackButton.style.display = 'none';
                 }
             }
-
-            // Apply the rule when the page loads
             applyBackButtonHashRule();
-            
-            // Re-apply the rule if the hash changes
             window.addEventListener('hashchange', applyBackButtonHashRule);
         }
 
-        // Check if Web Share API is available
-        updateShareButtonAvailability();
-        
         // Mobile navigation (hamburger menu)
         if (hamburgerBtn && nav) {
             hamburgerBtn.addEventListener('click', () => {
